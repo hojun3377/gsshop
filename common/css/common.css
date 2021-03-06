@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean");
+
+@font-face {
+    font-family: 'Metropolis-Light';
+    src: url('../fonts/Metropolis-Light.woff') format('woff');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Metropolis-ExtraBold';
+    src: url('../fonts/Metropolis-ExtraBold.woff') format('woff');
+    font-weight: 900;
+}
+
+/* Selector */
+body {
+    letter-spacing: -0.6px;
+}
+h3 {
+    font-family: 'Metropolis-ExtraBold','Noto Sans KR';
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 70px;
+    letter-spacing: -0.8px;
+    color: #fff;
+    text-align: center;
+}
+
+
+/* Layout */
