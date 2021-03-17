@@ -44,11 +44,11 @@ const mainPage = (function() {
                 removeClassName(heroTxtBox.children[_currentNum], 'effect');
                 for(j=0; j<otherIndex.length; j++) {
                     addClassName(heroTxtBox.children[otherIndex[j]], 'effect');
-                    TweenMax.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                    gsap.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
                     heroTxts.children[otherIndex[j]].style.display = "none";
                 }
                 heroTxts.children[_currentNum].style.display = "block";
-                TweenMax.to(heroTxts.children[_currentNum], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
+                gsap.to(heroTxts.children[_currentNum], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
     
                 _currentNum++;
                 if (_currentNum > heroTxtBox.children.length-2) {
@@ -85,9 +85,9 @@ const mainPage = (function() {
         var heroTxts = txtBox.lastElementChild;
 
         if (_newWindow) {
-            TweenMax.to(txtBox.children[0], 1, {delay:0.3, top:0, opacity:1, ease:Power2.easeOut});
-            TweenMax.to(txtBox.children[1], 1, {delay:0.4, top:0, opacity:1, ease:Power2.easeOut});
-            TweenMax.to(txtBox.children[2], 1, {delay:0.5, top:0, opacity:1, ease:Power2.easeOut});
+            gsap.to(txtBox.children[0], 1, {delay:0.3, top:0, opacity:1, ease:Power2.easeOut});
+            gsap.to(txtBox.children[1], 1, {delay:0.4, top:0, opacity:1, ease:Power2.easeOut});
+            gsap.to(txtBox.children[2], 1, {delay:0.5, top:0, opacity:1, ease:Power2.easeOut});
         }
 
         if (_windowW > 1024) {
@@ -128,7 +128,7 @@ const mainPage = (function() {
             }
 
             heroTxts.firstElementChild.style.display = 'block';
-            TweenMax.to(heroTxts.firstElementChild, 1, {delay:0.7, top:0, opacity:1, ease:Power3.easeOut});
+            gsap.to(heroTxts.firstElementChild, 1, {delay:0.7, top:0, opacity:1, ease:Power3.easeOut});
         }
 
         if (_windowW > 768) txtBox.style.top = Math.floor(_windowH/2 - (txtBox.offsetHeight/2)) + 'px';
@@ -184,14 +184,14 @@ const mainPage = (function() {
                         addClassName(parent.children[otherIndex[j]], 'effect');
                         // heroTxts.children[otherIndex[j]].style.top = 50 + 'px';
                         // heroTxts.children[otherIndex[j]].style.opacity = 1;
-                        TweenMax.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                        gsap.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
                         heroTxts.children[otherIndex[j]].style.display = "none";
-                        TweenMax.to(bgBox.children[otherIndex[j]], 0.8, {opacity:0, ease:Power3.easeOut});
+                        gsap.to(bgBox.children[otherIndex[j]], 0.8, {opacity:0, ease:Power3.easeOut});
                     }
 
-                    TweenMax.to(bgBox.children[index], 0.8, {opacity:1, ease:Power3.easeOut});
+                    gsap.to(bgBox.children[index], 0.8, {opacity:1, ease:Power3.easeOut});
                     heroTxts.children[index].style.display = "block";
-                    TweenMax.to(heroTxts.children[index], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
+                    gsap.to(heroTxts.children[index], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
                 });
 
                 el.addEventListener('mouseleave', function() {
@@ -202,9 +202,9 @@ const mainPage = (function() {
                     var heroTxtsTxt = document.getElementsByClassName('hero-txts')[0].children[index];
                     
                     if (window.innerWidth > 1024) {
-                        TweenMax.to(heroTxtsTxt, 0, {top:50, opacity:0, ease:Power3.easeOut});
+                        gsap.to(heroTxtsTxt, 0, {top:50, opacity:0, ease:Power3.easeOut});
                         heroTxtsTxt.style.display = "none";
-                        TweenMax.to(bgBoxImg, 0.8, {opacity:0, ease:Power3.easeOut});
+                        gsap.to(bgBoxImg, 0.8, {opacity:0, ease:Power3.easeOut});
                         removeClassName(parent.children[otherIndex[0]], 'effect');
                         removeClassName(parent.children[otherIndex[1]], 'effect');
                         heroVideo.play();
