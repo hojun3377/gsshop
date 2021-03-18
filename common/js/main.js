@@ -2,7 +2,6 @@ const mainPage = (function() {
     var _windowW, _windowW,
         _newWindow, _noVideo,
         _videoTime, _txtInterval, _txtTime,
-        // _transformNode,
         _slidePositionX;
         
 
@@ -74,7 +73,6 @@ const mainPage = (function() {
 
         _windowW = window.innerWidth;
         _windowH = window.innerHeight;
-
 
         var heroTxts = txtBox.lastElementChild;
 
@@ -167,9 +165,10 @@ const mainPage = (function() {
         mouseEvt: function() {
             var heroVideo = document.getElementById('hero-video');
             var heroTxtBoxA = document.getElementsByClassName('hero-txt-box')[0];
-            var i = 0;
+            var slideContent = document.getElementsByClassName('slide-content');
+            var i;
 
-            while(heroTxtBoxA.children[i] != heroTxtBoxA.lastElementChild) {
+            for (i = 0; heroTxtBoxA.children[i] != heroTxtBoxA.lastElementChild; i++) {
                 var el = heroTxtBoxA.children[i];
 
                 el.addEventListener('mouseenter', function() {
@@ -225,8 +224,15 @@ const mainPage = (function() {
                         heroAnimation();
                     }
                 });
+            }
 
-                i++;
+            for (i = 0; i < slideContent.length; i++) {
+                slideContent[i].addEventListener('mouseover', function() {
+                    this.children[0].lastElementChild.classList.add('on');
+                });
+                slideContent[i].addEventListener('mouseout', function() {
+                    this.children[0].lastElementChild.classList.remove('on');
+                });
             }
         },
 
@@ -241,7 +247,7 @@ const mainPage = (function() {
             var txtBoxh4 = txtBoxH2.previousElementSibling;
 
             slideLeftBtn.addEventListener('click', function() {
-                var scaleX = 0.2;
+                var scaleX = -1;
 
                 if (_slidePositionX >= -530) {
                     _slidePositionX = 0;
@@ -249,6 +255,7 @@ const mainPage = (function() {
                     scaleX = 0.2;
                     txtBoxH2.classList.remove('active');
                     TweenMax.to(txtBoxh4, 0.5, {opacity: 1});
+                    slideContainer.style.zIndex = 0;
                 }
                 else if (_slidePositionX >= -1060) {
                     _slidePositionX = -530;
@@ -263,18 +270,24 @@ const mainPage = (function() {
                     this.nextElementSibling.classList.remove('slide-btn--disable');
                     scaleX = 0.8;
                 }
+                else {
+                    // error
+                    alert('slide left button error');
+                    return;
+                }
 
-                slideWrapper.style.transform = 'translate3d('+ _slidePositionX +'px, 0px, 0px)';
+                setTransform(slideWrapper, {tl: [_slidePositionX,0,0], scx: 1, scy: 1});
                 setTransform(slidePgbFill, {tl: [0,0,0], scx: scaleX, scy: 1});
             });
 
             slideRightBtn.addEventListener('click', function() {
-                var scaleX = 0.2;
+                var scaleX = -1;
 
                 if (_slidePositionX > -530) {
                     _slidePositionX = -530;
                     this.previousElementSibling.classList.remove('slide-btn--disable');
                     scaleX = 0.4
+                    slideContainer.style.zIndex = 2;
                     TweenMax.to(txtBoxh4, 0.5, {opacity: 0});
                     txtBoxH2.classList.add('active');
                 }
@@ -291,8 +304,13 @@ const mainPage = (function() {
                     this.classList.add('slide-btn--disable');
                     scaleX = 1;
                 }
+                else {
+                    // error
+                    alert('slide right button error');
+                    return;
+                }
 
-                slideWrapper.style.transform = 'translate3d('+ _slidePositionX +'px, 0px, 0px)';
+                setTransform(slideWrapper, {tl: [_slidePositionX,0,0], scx: 1, scy: 1});
                 setTransform(slidePgbFill, {tl: [0,0,0], scx: scaleX, scy: 1});
             });
         }
