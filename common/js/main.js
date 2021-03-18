@@ -1,9 +1,10 @@
 const mainPage = (function() {
-    var _windowW = window.innerWidth;
-    var _windowH = window.innerHeight;
-    var _newWindow = true;
-    var _noVideo = false;
-    var _videoTime, _txtInterval, _txtTime;
+    var _windowW, _windowW,
+        _newWindow, _noVideo,
+        _videoTime, _txtInterval, _txtTime,
+        // _transformNode,
+        _slidePositionX;
+        
 
     var getIndex = function(element) {
         for(var i = 0; i < element.parentNode.children.length; i++) {
@@ -13,18 +14,10 @@ const mainPage = (function() {
         }
     }
 
-    var addClassName = function(element, className) {
-        if (element.className)
-            return;
+    var setTransform = function(element, transformNode) {
+        var string = 'translate3d(' + transformNode.tl[0] + 'px, '+ transformNode.tl[1] +'px, ' + transformNode.tl[2] + 'px) scaleX('+ transformNode.scx +') scaleY('+ transformNode.scy +')';
 
-        element.className = className;
-    }
-
-    var removeClassName = function(element, className) {
-        if (!element.className)
-            return;
-        
-        element.classList.remove(className);
+        element.style.transform = string;
     }
 
     var heroAnimation = function() {
@@ -41,28 +34,29 @@ const mainPage = (function() {
     
                 var otherIndex = [((_currentNum+1) > 2) ? 0 : _currentNum+1, ((_currentNum-1) < 0) ? 2 : _currentNum-1];
     
-                removeClassName(heroTxtBox.children[_currentNum], 'effect');
+                heroTxtBox.children[_currentNum].classList.remove('effect');
                 for(j=0; j<otherIndex.length; j++) {
-                    addClassName(heroTxtBox.children[otherIndex[j]], 'effect');
-                    gsap.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                    heroTxtBox.children[otherIndex[j]].classList.add('effect');
+                    TweenMax.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
                     heroTxts.children[otherIndex[j]].style.display = "none";
                 }
                 heroTxts.children[_currentNum].style.display = "block";
-                gsap.to(heroTxts.children[_currentNum], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
+                TweenMax.to(heroTxts.children[_currentNum], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
     
                 _currentNum++;
                 if (_currentNum > heroTxtBox.children.length-2) {
                     clearInterval(_txtInterval);
                     _txtTime = setTimeout(function() {
                         if (_noVideo)
-                            clearTimeout(this);
+                            return;
 
                         for(i=0; i<heroTxtBox.children.length-1; i++)
-                            removeClassName(heroTxtBox.children[i], 'effect');
+                            heroTxtBox.children[i].classList.remove('effect');
         
                         for(i=0; i<heroTxts.children.length; i++) {
-                            heroTxts.children[i].style.top = 50 + 'px';
-                            heroTxts.children[i].style.opacity = 0;
+                            // heroTxts.children[i].style.top = 50 + 'px';
+                            // heroTxts.children[i].style.opacity = 0;
+                            TweenMax.to(heroTxts.children[i], 0, {top:50, opacity:0, ease:Power3.easeOut});
                             heroTxts.children[i].style.display = 'none';
                         }
 
@@ -85,21 +79,23 @@ const mainPage = (function() {
         var heroTxts = txtBox.lastElementChild;
 
         if (_newWindow) {
-            gsap.to(txtBox.children[0], 1, {delay:0.3, top:0, opacity:1, ease:Power2.easeOut});
-            gsap.to(txtBox.children[1], 1, {delay:0.4, top:0, opacity:1, ease:Power2.easeOut});
-            gsap.to(txtBox.children[2], 1, {delay:0.5, top:0, opacity:1, ease:Power2.easeOut});
+            TweenMax.to(txtBox.children[0], 1, {delay:0.3, top:0, opacity:1, ease:Power2.easeOut});
+            TweenMax.to(txtBox.children[1], 1, {delay:0.4, top:0, opacity:1, ease:Power2.easeOut});
+            TweenMax.to(txtBox.children[2], 1, {delay:0.5, top:0, opacity:1, ease:Power2.easeOut});
         }
 
         if (_windowW > 1024) {
             for (i=0; i<bgBox.children.length; i++)
-                bgBox.children[i].style.opacity = 0;
+                // bgBox.children[i].style.opacity = 0;
+                TweenMax.to(bgBox.children[i], 0, {opacity:0, ease:Power3.easeOut});
 
             for(i=0; i<txtBox.children.length-1; i++)
-                removeClassName(txtBox.children[i], 'effect');
+                txtBox.children[i].classList.remove('effect');
 
             for(i=0; i<heroTxts.children.length; i++) {
-                heroTxts.children[i].style.top = 50 + 'px';
-                heroTxts.children[i].style.opacity = 0;
+                // heroTxts.children[i].style.top = 50 + 'px';
+                // heroTxts.children[i].style.opacity = 0;
+                TweenMax.to(heroTxts.children[i], 0, {top:50, opacity:0, ease:Power3.easeOut});
                 heroTxts.children[i].style.display = 'none';
             }
             videoEl.play();
@@ -112,23 +108,24 @@ const mainPage = (function() {
         }
         else if (_newWindow || pastWindowW > 1024 && _windowW != pastWindowW) {
             _noVideo = true;
-            
+
             // clear scheduler
             clearTimeout(_videoTime);
             clearInterval(_txtInterval);
             clearTimeout(_txtTime);
 
             videoEl.pause();
-            bgBox.firstElementChild.style.opacity = 1;
-            
-            removeClassName(txtBox.firstElementChild, 'effect');
+
+            TweenMax.to(bgBox.firstElementChild, 0, {opacity:1, ease:Power3.easeOut});
+
+            txtBox.firstElementChild.classList.remove('effect');
             for(i=1; i<txtBox.children.length-1; i++) {
-                addClassName(txtBox.children[i], 'effect');
+                txtBox.children[i].classList.add('effect');
                 heroTxts.children[i].style.display = 'none';
             }
 
             heroTxts.firstElementChild.style.display = 'block';
-            gsap.to(heroTxts.firstElementChild, 1, {delay:0.7, top:0, opacity:1, ease:Power3.easeOut});
+            TweenMax.to(heroTxts.firstElementChild, 1, {delay:0.7, top:0, opacity:1, ease:Power3.easeOut});
         }
 
         if (_windowW > 768) txtBox.style.top = Math.floor(_windowH/2 - (txtBox.offsetHeight/2)) + 'px';
@@ -137,9 +134,21 @@ const mainPage = (function() {
 
     return {
         init: function() {
+            _windowW = window.innerWidth;
+            _windowH = window.innerHeight;
+            _newWindow = true;
+            _noVideo = false;
+            _slidePositionX = 0;
+            
             var heroVideo = document.getElementById('hero-video');
             var bgBox = document.getElementsByClassName('bg-box')[0];
             var heroTxtBox = document.getElementsByClassName('hero-txt-box')[0];
+            var slideLeftBtn = document.getElementsByClassName('slide-left-btn')[0];
+            var slidePgbFill = document.getElementsByClassName('slide-progressbar-fill')[0];
+
+            slideLeftBtn.classList.add('slide-btn--disable');
+            // _transformNode = {tl: [0, 0, 0], scx: 0.2, scy: 1};
+            setTransform(slidePgbFill, {tl: [0, 0, 0], scx: 0.2, scy: 1});
 
             Sizing(heroVideo, bgBox, heroTxtBox);
             _newWindow = false;
@@ -179,21 +188,21 @@ const mainPage = (function() {
                         heroVideo.pause();
                     }
 
-                    removeClassName(parent.children[index], 'effect');
+                    parent.children[index].classList.remove('effect');
                     for(j=0; j<otherIndex.length; j++) {
-                        addClassName(parent.children[otherIndex[j]], 'effect');
+                        parent.children[otherIndex[j]].classList.add('effect');
                         // heroTxts.children[otherIndex[j]].style.top = 50 + 'px';
-                        // heroTxts.children[otherIndex[j]].style.opacity = 1;
-                        gsap.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                        // heroTxts.children[otherIndex[j]].style.opacity = 0;
+                        TweenMax.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
                         heroTxts.children[otherIndex[j]].style.display = "none";
-                        gsap.to(bgBox.children[otherIndex[j]], 0.8, {opacity:0, ease:Power3.easeOut});
+                        TweenMax.to(bgBox.children[otherIndex[j]], 0.8, {opacity:0, ease:Power3.easeOut});
                     }
 
-                    gsap.to(bgBox.children[index], 0.8, {opacity:1, ease:Power3.easeOut});
+                    TweenMax.to(bgBox.children[index], 0.8, {opacity:1, ease:Power3.easeOut});
                     heroTxts.children[index].style.display = "block";
-                    gsap.to(heroTxts.children[index], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
+                    TweenMax.to(heroTxts.children[index], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
                 });
-
+                
                 el.addEventListener('mouseleave', function() {
                     var index = getIndex(this);
                     var otherIndex = [((index+1) > 2) ? 0 : index+1, ((index-1) < 0) ? 2 : index-1];
@@ -202,11 +211,11 @@ const mainPage = (function() {
                     var heroTxtsTxt = document.getElementsByClassName('hero-txts')[0].children[index];
                     
                     if (window.innerWidth > 1024) {
-                        gsap.to(heroTxtsTxt, 0, {top:50, opacity:0, ease:Power3.easeOut});
+                        TweenMax.to(heroTxtsTxt, 0, {top:50, opacity:0, ease:Power3.easeOut});
                         heroTxtsTxt.style.display = "none";
-                        gsap.to(bgBoxImg, 0.8, {opacity:0, ease:Power3.easeOut});
-                        removeClassName(parent.children[otherIndex[0]], 'effect');
-                        removeClassName(parent.children[otherIndex[1]], 'effect');
+                        TweenMax.to(bgBoxImg, 0.8, {opacity:0, ease:Power3.easeOut});
+                        parent.children[otherIndex[0]].classList.remove('effect');
+                        parent.children[otherIndex[1]].classList.remove('effect');
                         heroVideo.play();
 
                         // heroAnimation restart
@@ -219,6 +228,73 @@ const mainPage = (function() {
 
                 i++;
             }
+        },
+
+        slideEvt: function() {
+            var slideContainer = document.getElementsByClassName('slide-container')[0];
+            var slideWrapper = slideContainer.firstElementChild;
+            var slidePgb = slideContainer.lastElementChild;
+            var slideRightBtn = slidePgb.previousElementSibling;
+            var slideLeftBtn = slideRightBtn.previousElementSibling;
+            var slidePgbFill = slidePgb.firstElementChild;
+            var txtBoxH2 = document.getElementById('sec-02-txt-header');
+            var txtBoxh4 = txtBoxH2.previousElementSibling;
+
+            slideLeftBtn.addEventListener('click', function() {
+                var scaleX = 0.2;
+
+                if (_slidePositionX >= -530) {
+                    _slidePositionX = 0;
+                    this.classList.add('slide-btn--disable');
+                    scaleX = 0.2;
+                    txtBoxH2.classList.remove('active');
+                    TweenMax.to(txtBoxh4, 0.5, {opacity: 1});
+                }
+                else if (_slidePositionX >= -1060) {
+                    _slidePositionX = -530;
+                    scaleX = 0.4;
+                }
+                else if (_slidePositionX >= -1590) {
+                    _slidePositionX = -1060;
+                    scaleX = 0.6;
+                }
+                else if (_slidePositionX >= -1624) {
+                    _slidePositionX = -1590;
+                    this.nextElementSibling.classList.remove('slide-btn--disable');
+                    scaleX = 0.8;
+                }
+
+                slideWrapper.style.transform = 'translate3d('+ _slidePositionX +'px, 0px, 0px)';
+                setTransform(slidePgbFill, {tl: [0,0,0], scx: scaleX, scy: 1});
+            });
+
+            slideRightBtn.addEventListener('click', function() {
+                var scaleX = 0.2;
+
+                if (_slidePositionX > -530) {
+                    _slidePositionX = -530;
+                    this.previousElementSibling.classList.remove('slide-btn--disable');
+                    scaleX = 0.4
+                    TweenMax.to(txtBoxh4, 0.5, {opacity: 0});
+                    txtBoxH2.classList.add('active');
+                }
+                else if (_slidePositionX > -1060) {
+                    _slidePositionX = -1060;
+                    scaleX = 0.6;
+                }
+                else if (_slidePositionX > -1590) {
+                    _slidePositionX = -1590;
+                    scaleX = 0.8;
+                }
+                else if (_slidePositionX > -1624) {
+                    _slidePositionX = -1624;
+                    this.classList.add('slide-btn--disable');
+                    scaleX = 1;
+                }
+
+                slideWrapper.style.transform = 'translate3d('+ _slidePositionX +'px, 0px, 0px)';
+                setTransform(slidePgbFill, {tl: [0,0,0], scx: scaleX, scy: 1});
+            });
         }
     }
 })();
@@ -230,4 +306,5 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('load', function() {
     mainPage.resizeEvt();
     mainPage.mouseEvt();
+    mainPage.slideEvt();
 })
