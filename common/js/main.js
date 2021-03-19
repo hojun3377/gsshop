@@ -238,14 +238,16 @@ const mainPage = (function() {
 
         slideEvt: function() {
             var slideContainer = document.getElementsByClassName('slide-container')[0];
-            var slideWrapper = slideContainer.firstElementChild;
-            var slidePgb = slideContainer.lastElementChild;
+            var slideWrapper = slideContainer.firstElementChild; //
+            var slidePgb = slideContainer.lastElementChild; //
+            var layoutSlideWrapper = document.getElementsByClassName('l-slide-container')[0];
             var slideRightBtn = slidePgb.previousElementSibling;
             var slideLeftBtn = slideRightBtn.previousElementSibling;
             var slidePgbFill = slidePgb.firstElementChild;
             var txtBoxH2 = document.getElementById('sec-02-txt-header');
             var txtBoxh4 = txtBoxH2.previousElementSibling;
 
+            txtBoxH2.style.transition
             slideLeftBtn.addEventListener('click', function() {
                 var scaleX = -1;
 
@@ -253,9 +255,9 @@ const mainPage = (function() {
                     _slidePositionX = 0;
                     this.classList.add('slide-btn--disable');
                     scaleX = 0.2;
-                    txtBoxH2.classList.remove('active');
+                    layoutSlideWrapper.style.zIndex = 0;
                     TweenMax.to(txtBoxh4, 0.5, {opacity: 1});
-                    slideContainer.style.zIndex = 0;
+                    txtBoxH2.classList.remove('active');
                 }
                 else if (_slidePositionX >= -1060) {
                     _slidePositionX = -530;
@@ -287,7 +289,7 @@ const mainPage = (function() {
                     _slidePositionX = -530;
                     this.previousElementSibling.classList.remove('slide-btn--disable');
                     scaleX = 0.4
-                    slideContainer.style.zIndex = 2;
+                    layoutSlideWrapper.style.zIndex = 2;
                     TweenMax.to(txtBoxh4, 0.5, {opacity: 0});
                     txtBoxH2.classList.add('active');
                 }
