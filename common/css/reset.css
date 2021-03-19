@@ -19,9 +19,6 @@ time, mark, audio, video {
 	vertical-align: baseline;
     box-sizing: border-box;
 }
-a {
-	text-decoration: none;
-}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -44,4 +41,31 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+/* User Custom Reset */
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+em, address {
+	font-style: normal;
+}
+div, ul, li, a, h1 { 
+    background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+button{ 
+    background: none;
+    cursor: pointer;
+	overflow: visible; 
+    white-space: nowrap;
+	background-color: rgb(0,0,0,0.0);
+}
+button:active { 
+    outline: none 
+}
+button::-moz-focus-inner { 
+    padding:0; border:0; 
 }
