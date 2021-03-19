@@ -315,7 +315,60 @@ const mainPage = (function() {
                 setTransform(slideWrapper, {tl: [_slidePositionX,0,0], scx: 1, scy: 1});
                 setTransform(slidePgbFill, {tl: [0,0,0], scx: scaleX, scy: 1});
             });
-        }
+        },
+        
+        cultureEvt: function() {
+            var c = document.getElementsByClassName('list_a_1')[0];
+
+            c.addEventListener('mouseover', () => {
+                var a = document.getElementsByClassName('culture_img_1')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+            })
+
+            c.addEventListener('mouseout', () => {
+                var a = document.getElementsByClassName('culture_img_1')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+            })
+
+            // 2
+            var c = document.getElementsByClassName('list_a_2')[0];
+
+            c.addEventListener('mouseover', () => {
+                var a = document.getElementsByClassName('culture_img_2')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+            })
+
+            c.addEventListener('mouseout', () => {
+                var a = document.getElementsByClassName('culture_img_2')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+            })
+
+            // 3
+            var c = document.getElementsByClassName('list_a_3')[0];
+
+            c.addEventListener('mouseover', () => {
+                var a = document.getElementsByClassName('culture_img_3')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+            })
+
+            c.addEventListener('mouseout', () => {
+                var a = document.getElementsByClassName('culture_img_3')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+            })
+
+            // 4
+            var c = document.getElementsByClassName('list_a_4')[0];
+
+            c.addEventListener('mouseover', () => {
+                var a = document.getElementsByClassName('culture_img_4')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+            })
+
+            c.addEventListener('mouseout', () => {
+                var a = document.getElementsByClassName('culture_img_4')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+            })
+        },
     }
 })();
 
@@ -327,4 +380,5 @@ window.addEventListener('load', function() {
     mainPage.resizeEvt();
     mainPage.mouseEvt();
     mainPage.slideEvt();
+    mainPage.cultureEvt();
 })

@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+@font-face {
+   font-family: 'metropolis-light';
+   src: url(../font/metropolis-light-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'metropolis-regular';
+   src: url(../font/metropolis-regular-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'metropolis-semibold';
+   src: url(../font/metropolis-semibold-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'metropolis-bold';
+   src: url(../font/metropolis-bold-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'metropolis-extrabold';
+   src: url(../font/metropolis-extrabold-webfont.woff2) format('woff2');
+}
+
+@font-face {
+   font-family: 'notosanskr-light';
+   src: url(../font/notosanskr-light-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'notosanskr-medium';
+   src: url(../font/notosanskr-medium-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'notosanskr-regular';
+   src: url(../font/notosanskr-regular-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'notosanskr-bold';
+   src: url(../font/notosanskr-bold-webfont.woff2) format('woff2');
+}
+@font-face {
+   font-family: 'notosanskr-black';
+   src: url(../font/notosanskr-black-webfont.woff2) format('woff2');
+}
+
+.hero_title {
+   font-family: 'Noto Sans KR';
+   font-weight: 900;
+   font-size: 60px;
+}

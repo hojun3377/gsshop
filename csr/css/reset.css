@@ -1,0 +1,36 @@
+* { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; }
+
+
+ul, ol, li { 
+    list-style: none; 
+}
+figure, footer, header, main, nav, section { 
+    display: block; 
+}
+div, ul, li, a, h1 { 
+    background-size: cover; background-repeat: no-repeat; background-position: center center; 
+}
+
+
+/* a태그 reset */
+a { 
+    text-decoration:none; color:#555;
+}
+a:hover { 
+    cursor: pointer; 
+}
+a:focus, a:active { 
+    text-decoration: none; 
+}
+/* Button reste */
+button{ 
+    background: none; border: none;
+    cursor: pointer; overflow: visible; 
+    white-space: nowrap;
+}
+button:active { 
+    outline: none 
+}
+button::-moz-focus-inner { 
+    padding:0; border:0; 
+}

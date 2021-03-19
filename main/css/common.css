@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* 웹폰트 */
+@font-face {
+  font-family: 'metropolis-light';
+  src: url(../font/metropolis-light-webfont.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'metropolis-regular';
+  src: url(../font/metropolis-regular-webfont.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'metropolis-semibold';
+  src: url(../font/metropolis-semibold-webfont.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'metropolis-bold';
+  src: url(../font/metropolis-bold-webfont.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'metropolis-extrabold';
+  src: url(../font/metropolis-extrabold-webfont.woff2) format('woff2');
+}
+
+/* font style */
+body, input, textarea, select, button, table, p {
+  font-family: 'metropolis-regular', 'Noto Sans KR', 'sans-serif'; 
+  font-size: 16px; 
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  color: #666;
+}
+
+h1 {
+  font-family: 'metropolis-regular', 'Noto Sans KR', 'sans-serif'; 
+  font-size: 16px; 
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  color: #666;
+}
+
+h3 {
+  font-family: 'Metropolis-ExtraBold','Noto Sans KR';
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 70px;
+  color: #fff;
+  letter-spacing: -0.8px;
+  text-align: center;
+}
+
+
+/* font size */
+.p_36 {font-size:36px; line-height:46px;}
+.p_32 {font-size:32px; line-height:45px;}
+.p_18 {font-size:18px; line-height:25px;}
+.p_16 {font-size:16px; line-height:22px;}
+.p_15 {font-size:15px; line-height:24px;}
+.p_14 {font-size:14px; line-height:19px;}
+.p_12 {font-size:12px; line-height:17px;}
+.p_10 {font-size:10px; line-height:15px;}
+
+/* font weight */
+.fW_3L {font-family:'NanumSquareL';}
+.fW_7B {font-family:'NanumSquareB';}
+.fW_8EB {font-family:'NanumSquareEB';}
+
+/* font color */
+.c_point {color:rgb(157, 185, 0);}
+.c_black {color:rgb(8, 8, 8);}
+.c_dgray {color:rgb(33, 33, 33)}
+.c_gray {color:rgb(51,51,51)}
+.c_lgray {color:rgb(135, 136, 144)}
+.c_white {color:rgb(255,255,255);}
+
+/* margin & padding */
+.mb_32 {margin-bottom:32px;}
+.pr_20 {padding-right:20px;}
+.pl_20 {padding-left:20px;}
+
+/* animation */
+@keyframes top {
+  0% {margin-top: 100px; opacity: 0;}
+  100% {margin-top: 25px; opacity: 1;}
+  }
+
+@media screen and (max-width: 981px) {
+  @keyframes top {
+    0% {margin-top: 100px; opacity: 0;}
+    100% {margin-top: 15px; opacity: 1;}
+    }
+}
