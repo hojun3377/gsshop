@@ -655,6 +655,8 @@
     height: 100%;
     overflow: hidden;
     position: relative;
+    transition: all 1.2s ease;
+    transition-delay: 0.8s;
 }
 .slide-wrapper {
     display: flex;
@@ -673,7 +675,8 @@
 .slide-right-btn {
     position: absolute;
     top: 120px;
-    left: 1300px;
+    /* left: 1300px; */
+    right: 50px;
     width: 120px;
     height: 120px;
     background: url(../../main/images/main_vision_rightBtn.png) no-repeat center rgba(0, 0, 0, 0.5);
@@ -777,6 +780,33 @@
 }
 
 /* 반응형 */
+@media screen and (max-width: 1400px) {
+    .l-content {
+        top: 175px;
+    }
+}
+@media screen and (max-width: 1220px) {
+    .sec-02-txt-box.on {
+        left: 140px;
+    }
+    .sec-02-txt-box>h2 {
+        font-size: 80px;
+    }
+    .sec-02-txt-box>h2.active {
+        top: -45px;
+        font-size: 110px;
+    }
+    .sec-02-bg {
+        width: 300px;
+    }
+    .slide-container {
+        padding: 0 15px 0 570px;
+    }
+    .slide-progressbar {
+        left: 140px;
+        width: calc(100vw - 440px);
+    }
+}
 @media screen and (max-width: 1024px) {
     #hero-video {
         display: none;
@@ -798,6 +828,58 @@
     .mouse-icon {
         margin: 8px auto 0;
     }
+    .sec-02-txt-box.on {
+        left: 50px;
+    }
+    .slide-container {
+        padding: 0 15px 0 490px;
+    }
+    .slide-progressbar {
+        left: 50px;
+        width: calc(100vw - 350px);
+    }
+}
+
+@media screen and (max-width: 758px) {
+    .l-content {
+        top: 120px;
+    }
+    .l-slide-container {
+        position: static;
+        margin-top: 60px;
+    }
+    .sec-02-bg, 
+    .slide-left-btn, .slide-right-btn {
+        display: none;
+    }
+    .sec-02-txt-box>h2 {
+        font-size: 45px;
+        top: 30px;
+    }
+    .sec-02-txt-box>h4 {
+        font-size: 16px;
+        line-height: 1;
+    }
+    .sec-02-txt-box>p {
+        padding-top: 80px;
+        font-size: 15px;
+        line-height: 22px;
+    }
+    .sec-02-txt-box>a {
+        margin-top: 40px;
+        font-size: 18px;
+    }
+    .slide-container {
+        padding: 0 15px 130px 50px;
+    }
+    .slide-progressbar {
+        left: 15px;
+        width: calc(100vw - 0px);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    
 }
 
 /* 애니메이션 */
