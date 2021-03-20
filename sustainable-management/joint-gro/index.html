@@ -7,16 +7,20 @@
     <title>GS SHOP</title>
     <link rel="shortcut icon" href="../../common/images/favicon.ico">
     
+    <!-- stylesheet link -->
     <link rel="stylesheet" href="../../common/css/reset.css">
     <link rel="stylesheet" href="../../common/css/common.css">
-    <link rel="stylesheet" href="../../common/css/style.css">
-    <link rel="stylesheet" href="../../main/css/footer.css">
-    <link rel="stylesheet" href="../../main/css/header.css">
-
-    <script src="../../common/js/joint-gro.js"></script>
+    <link rel="stylesheet" href="../../common/css/header.css">
+    <link rel="stylesheet" href="../../common/css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <!-- java script link -->
+    <script src="../../common/js/jquery.min.js"></script>
+    <script src="../../common/js/header.js"></script>
+    <script src="../../common/js/subpage.js"></script>
 </head>
 <body>
-    <!-- Header -->
+     <!-- Header -->
     <header onmouseover="gnbSubMenuOpen()" onmouseout="gnbSubMenuClose()">
 
         <!-- Desktop & Mobile GNB default -->
@@ -188,7 +192,7 @@
     </header>
 
     <!-- content -->
-    <div>
+    <main>
         <figure class="l-joint-gro-fg">
             <div class="hero-img-wrapper">
                 <img id="hero-img" src="images/subVisual_csr3.jpg" style="object-position: 50% 0%;">
@@ -334,7 +338,7 @@
             </div>
             <a href='' class="topBtn">TOP</a>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -354,9 +358,9 @@
             <div class="footer_link">
                 <a href="" class="footer_ccm"></a>
                 <div class="familysite">
-                    <a href="javascript:void(0);"><span>Family Site</span></a>
+                    <a href="javascript:void(0);" onclick="familySiteOpen()"><span>Family Site</span></a>
                 </div>
-    
+
                 <!-- Footer CCM Pop-up Page -->
                 <div class="ccm_page">
                     <div>
@@ -409,33 +413,34 @@
                         배송원의 정보와 현재 위치, 도착 예정 시간 등의 정보를 제공하는 ‘라이브(LIVE) 배송 서비스’, 16개 지자체와 협력해 전국 277개 무인택배 보관함에서 상품을 받아볼 수 있는 ‘안심택배 서비스’ 가까운 GS25와 CU 편의점에서 24시간 상품을 받고 반품할 수 있는 ‘편의점 픽업 서비스’, ‘편의점 반품 서비스’ 를 실시 중이며 다양한 결제 수단을 도입해 결제 편의성도 지속 개선하고 있습니다.</p>
                     </div>
                 </div>
-    
+
                 <!-- Footer family site sub menu -->
-                <div class="footer_popup_wrap">
-                    <div class="footer_popup">
+                <div class="familysite_riseup">
+                    <div class="familysite_popup_wrap">
                         <div class="familysite_popup">
-                            <p>자매사</p>
-                            <div>
-                                <a href="">GS</a>
-                                <a href="">GS칼텍스</a>
-                                <a href="">GS리테일</a>
-                                <a href="">GS EPS</a>
-                                <a href="">GS건설</a>
-                                <a href="">GS글로벌</a>
-                                <a href="">GS스포츠</a>
-                                <a href="">GS에너지</a>
-                                <a href="">GS E&R</a>
+                            <p class="familysite_category">자매사</p>
+                            <div class="familysite_list">
+                                <p><a href="">GS</a></p>
+                                <p><a href="">GS칼텍스</a></p>
+                                <p><a href="">GS리테일</a></p>
+                                <p><a href="">GS EPS</a></p>
+                                <p><a href="">GS건설</a></p>
+                                <p><a href="">GS글로벌</a></p>
+                                <p><a href="">GS스포츠</a></p>
+                                <p><a href="">GS에너지</a></p>
+                                <p><a href="">GS E&R</a></p>
                             </div>
                         </div>
                         <div class="familysite_popup">
-                            <p>자회사</p>
-                            <div>
-                                <a href="">GS텔레서비스</a>
-                                <a href="">텐바이텐</a>
+                            <p class="familysite_category">자회사</p>
+                            <div class="familysite_list">
+                                <p><a href="">GS텔레서비스</a></p>
+                                <p><a href="">텐바이텐</a></p>
                             </div>
                         </div>
-                        <a href="" class="close_btn"></a>
+                        <a href="javascript:void(0);" class="close_btn" onclick="familySiteClose()"></a>
                     </div>
+
                 </div>
                 
             </div>
