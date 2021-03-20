@@ -1,61 +1,87 @@
-const mainPage = (function() {
+// main page IR
+
+// IR Record(회사실적) Mouse over Event <-resize event 추가 필요
+if (matchMedia("screen and (min-width: 768px)").matches) {
+    function scaleExpansion() {
+        document.getElementsByClassName('ir_record_img')[0].style = "transform: scale(1.2); transition: all 0.5s;"
+    }
+
+    function downScale() {
+        document.getElementsByClassName('ir_record_img')[0].style = "transform: scale(1); transition: all 0.5s;"
+    }
+}
+
+// IR Report(IR 보고서) Mouse over Event <-resize event 추가 필요
+if (matchMedia("screen and (min-width: 1220px)").matches) {
+    function reportHover() {
+        document.getElementsByClassName('ir_report_img')[0].style = "bottom: -3px; transition: all 0.5s;";
+        document.getElementsByClassName('ir_report')[0].style = "background-color: rgb(180, 212, 27); border: 2px solid rgb(180, 212, 27);";
+    }
+
+    function reportOut() {
+        document.getElementsByClassName('ir_report_img')[0].style = "bottom: -160px; transition: all 0.5s;";
+        document.getElementsByClassName('ir_report')[0].style = "background-color: none; border: 2px solid rgb(255, 255, 255);";
+    }
+}
+
+const mainPage = (function () {
     var _windowW, _windowW,
         _newWindow, _noVideo,
         _videoTime, _txtInterval, _txtTime,
         _slidePositionX;
-        
 
-    var getIndex = function(element) {
-        for(var i = 0; i < element.parentNode.children.length; i++) {
+
+    var getIndex = function (element) {
+        for (var i = 0; i < element.parentNode.children.length; i++) {
             if (element.parentNode.children[i] === element) {
                 return i;
             }
         }
     }
 
-    var setTransform = function(element, transformNode) {
-        var string = 'translate3d(' + transformNode.tl[0] + 'px, '+ transformNode.tl[1] +'px, ' + transformNode.tl[2] + 'px) scaleX('+ transformNode.scx +') scaleY('+ transformNode.scy +')';
+    var setTransform = function (element, transformNode) {
+        var string = 'translate3d(' + transformNode.tl[0] + 'px, ' + transformNode.tl[1] + 'px, ' + transformNode.tl[2] + 'px) scaleX(' + transformNode.scx + ') scaleY(' + transformNode.scy + ')';
 
         element.style.transform = string;
     }
 
-    var heroAnimation = function() {
+    var heroAnimation = function () {
         var _currentNum = 0;
 
-        _videoTime = setTimeout(function() {
+        _videoTime = setTimeout(function () {
             startAnimation();
         }, 2000);
 
-        var startAnimation = function() {
-            _txtInterval = setInterval(function() {
+        var startAnimation = function () {
+            _txtInterval = setInterval(function () {
                 var heroTxtBox = document.getElementsByClassName('hero-txt-box')[0];
                 var heroTxts = heroTxtBox.lastElementChild;
-    
-                var otherIndex = [((_currentNum+1) > 2) ? 0 : _currentNum+1, ((_currentNum-1) < 0) ? 2 : _currentNum-1];
-    
+
+                var otherIndex = [((_currentNum + 1) > 2) ? 0 : _currentNum + 1, ((_currentNum - 1) < 0) ? 2 : _currentNum - 1];
+
                 heroTxtBox.children[_currentNum].classList.remove('effect');
-                for(j=0; j<otherIndex.length; j++) {
+                for (j = 0; j < otherIndex.length; j++) {
                     heroTxtBox.children[otherIndex[j]].classList.add('effect');
-                    TweenMax.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                    TweenMax.to(heroTxts.children[otherIndex[j]], 0, { top: 50, opacity: 0, ease: Power3.easeOut });
                     heroTxts.children[otherIndex[j]].style.display = "none";
                 }
                 heroTxts.children[_currentNum].style.display = "block";
-                TweenMax.to(heroTxts.children[_currentNum], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
-    
+                TweenMax.to(heroTxts.children[_currentNum], 0.5, { top: 0, opacity: 1, ease: Power3.easeOut });
+
                 _currentNum++;
-                if (_currentNum > heroTxtBox.children.length-2) {
+                if (_currentNum > heroTxtBox.children.length - 2) {
                     clearInterval(_txtInterval);
-                    _txtTime = setTimeout(function() {
+                    _txtTime = setTimeout(function () {
                         if (_noVideo)
                             return;
 
-                        for(i=0; i<heroTxtBox.children.length-1; i++)
+                        for (i = 0; i < heroTxtBox.children.length - 1; i++)
                             heroTxtBox.children[i].classList.remove('effect');
-        
-                        for(i=0; i<heroTxts.children.length; i++) {
+
+                        for (i = 0; i < heroTxts.children.length; i++) {
                             // heroTxts.children[i].style.top = 50 + 'px';
                             // heroTxts.children[i].style.opacity = 0;
-                            TweenMax.to(heroTxts.children[i], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                            TweenMax.to(heroTxts.children[i], 0, { top: 50, opacity: 0, ease: Power3.easeOut });
                             heroTxts.children[i].style.display = 'none';
                         }
 
@@ -65,10 +91,10 @@ const mainPage = (function() {
             }, 2000);
         }
 
-        
+
     }
 
-    var Sizing = function(videoEl, bgBox, txtBox) {
+    var Sizing = function (videoEl, bgBox, txtBox) {
         var pastWindowW = _windowW;
 
         _windowW = window.innerWidth;
@@ -77,23 +103,23 @@ const mainPage = (function() {
         var heroTxts = txtBox.lastElementChild;
 
         if (_newWindow) {
-            TweenMax.to(txtBox.children[0], 1, {delay:0.3, top:0, opacity:1, ease:Power2.easeOut});
-            TweenMax.to(txtBox.children[1], 1, {delay:0.4, top:0, opacity:1, ease:Power2.easeOut});
-            TweenMax.to(txtBox.children[2], 1, {delay:0.5, top:0, opacity:1, ease:Power2.easeOut});
+            TweenMax.to(txtBox.children[0], 1, { delay: 0.3, top: 0, opacity: 1, ease: Power2.easeOut });
+            TweenMax.to(txtBox.children[1], 1, { delay: 0.4, top: 0, opacity: 1, ease: Power2.easeOut });
+            TweenMax.to(txtBox.children[2], 1, { delay: 0.5, top: 0, opacity: 1, ease: Power2.easeOut });
         }
 
         if (_windowW > 1024) {
-            for (i=0; i<bgBox.children.length; i++)
+            for (i = 0; i < bgBox.children.length; i++)
                 // bgBox.children[i].style.opacity = 0;
-                TweenMax.to(bgBox.children[i], 0, {opacity:0, ease:Power3.easeOut});
+                TweenMax.to(bgBox.children[i], 0, { opacity: 0, ease: Power3.easeOut });
 
-            for(i=0; i<txtBox.children.length-1; i++)
+            for (i = 0; i < txtBox.children.length - 1; i++)
                 txtBox.children[i].classList.remove('effect');
 
-            for(i=0; i<heroTxts.children.length; i++) {
+            for (i = 0; i < heroTxts.children.length; i++) {
                 // heroTxts.children[i].style.top = 50 + 'px';
                 // heroTxts.children[i].style.opacity = 0;
-                TweenMax.to(heroTxts.children[i], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                TweenMax.to(heroTxts.children[i], 0, { top: 50, opacity: 0, ease: Power3.easeOut });
                 heroTxts.children[i].style.display = 'none';
             }
             videoEl.play();
@@ -114,30 +140,30 @@ const mainPage = (function() {
 
             videoEl.pause();
 
-            TweenMax.to(bgBox.firstElementChild, 0, {opacity:1, ease:Power3.easeOut});
+            TweenMax.to(bgBox.firstElementChild, 0, { opacity: 1, ease: Power3.easeOut });
 
             txtBox.firstElementChild.classList.remove('effect');
-            for(i=1; i<txtBox.children.length-1; i++) {
+            for (i = 1; i < txtBox.children.length - 1; i++) {
                 txtBox.children[i].classList.add('effect');
                 heroTxts.children[i].style.display = 'none';
             }
 
             heroTxts.firstElementChild.style.display = 'block';
-            TweenMax.to(heroTxts.firstElementChild, 1, {delay:0.7, top:0, opacity:1, ease:Power3.easeOut});
+            TweenMax.to(heroTxts.firstElementChild, 1, { delay: 0.7, top: 0, opacity: 1, ease: Power3.easeOut });
         }
 
-        if (_windowW > 768) txtBox.style.top = Math.floor(_windowH/2 - (txtBox.offsetHeight/2)) + 'px';
+        if (_windowW > 768) txtBox.style.top = Math.floor(_windowH / 2 - (txtBox.offsetHeight / 2)) + 'px';
         else txtBox.style.top = 120 + 'px';
     }
 
     return {
-        init: function() {
+        init: function () {
             _windowW = window.innerWidth;
             _windowH = window.innerHeight;
             _newWindow = true;
             _noVideo = false;
             _slidePositionX = 0;
-            
+
             var heroVideo = document.getElementById('hero-video');
             var bgBox = document.getElementsByClassName('bg-box')[0];
             var heroTxtBox = document.getElementsByClassName('hero-txt-box')[0];
@@ -146,13 +172,13 @@ const mainPage = (function() {
 
             slideLeftBtn.classList.add('slide-btn--disable');
             // _transformNode = {tl: [0, 0, 0], scx: 0.2, scy: 1};
-            setTransform(slidePgbFill, {tl: [0, 0, 0], scx: 0.2, scy: 1});
+            setTransform(slidePgbFill, { tl: [0, 0, 0], scx: 0.2, scy: 1 });
 
             Sizing(heroVideo, bgBox, heroTxtBox);
             _newWindow = false;
         },
 
-        resizeEvt: function() {
+        resizeEvt: function () {
             var heroVideo = document.getElementById('hero-video');
             var bgBox = document.getElementsByClassName('bg-box')[0];
             var heroTxtBox = document.getElementsByClassName('hero-txt-box')[0];
@@ -162,7 +188,7 @@ const mainPage = (function() {
             });
         },
 
-        mouseEvt: function() {
+        mouseEvt: function () {
             var heroVideo = document.getElementById('hero-video');
             var heroTxtBoxA = document.getElementsByClassName('hero-txt-box')[0];
             var slideContent = document.getElementsByClassName('slide-content');
@@ -171,14 +197,14 @@ const mainPage = (function() {
             for (i = 0; heroTxtBoxA.children[i] != heroTxtBoxA.lastElementChild; i++) {
                 var el = heroTxtBoxA.children[i];
 
-                el.addEventListener('mouseenter', function() {
+                el.addEventListener('mouseenter', function () {
                     var index = getIndex(this);
-                    var otherIndex = [((index+1) > 2) ? 0 : index+1, ((index-1) < 0) ? 2 : index-1];
+                    var otherIndex = [((index + 1) > 2) ? 0 : index + 1, ((index - 1) < 0) ? 2 : index - 1];
                     var parent = this.parentNode;
                     var bgBox = document.getElementsByClassName('bg-box')[0];
                     var heroTxts = document.getElementsByClassName('hero-txts')[0];
 
-                    if(window.innerWidth > 1024) {
+                    if (window.innerWidth > 1024) {
                         // clear scheduler
                         clearTimeout(_videoTime);
                         clearInterval(_txtInterval);
@@ -188,31 +214,31 @@ const mainPage = (function() {
                     }
 
                     parent.children[index].classList.remove('effect');
-                    for(j=0; j<otherIndex.length; j++) {
+                    for (j = 0; j < otherIndex.length; j++) {
                         parent.children[otherIndex[j]].classList.add('effect');
                         // heroTxts.children[otherIndex[j]].style.top = 50 + 'px';
                         // heroTxts.children[otherIndex[j]].style.opacity = 0;
-                        TweenMax.to(heroTxts.children[otherIndex[j]], 0, {top:50, opacity:0, ease:Power3.easeOut});
+                        TweenMax.to(heroTxts.children[otherIndex[j]], 0, { top: 50, opacity: 0, ease: Power3.easeOut });
                         heroTxts.children[otherIndex[j]].style.display = "none";
-                        TweenMax.to(bgBox.children[otherIndex[j]], 0.8, {opacity:0, ease:Power3.easeOut});
+                        TweenMax.to(bgBox.children[otherIndex[j]], 0.8, { opacity: 0, ease: Power3.easeOut });
                     }
 
-                    TweenMax.to(bgBox.children[index], 0.8, {opacity:1, ease:Power3.easeOut});
+                    TweenMax.to(bgBox.children[index], 0.8, { opacity: 1, ease: Power3.easeOut });
                     heroTxts.children[index].style.display = "block";
-                    TweenMax.to(heroTxts.children[index], 0.5, {top:0, opacity:1, ease:Power3.easeOut});
+                    TweenMax.to(heroTxts.children[index], 0.5, { top: 0, opacity: 1, ease: Power3.easeOut });
                 });
-                
-                el.addEventListener('mouseleave', function() {
+
+                el.addEventListener('mouseleave', function () {
                     var index = getIndex(this);
-                    var otherIndex = [((index+1) > 2) ? 0 : index+1, ((index-1) < 0) ? 2 : index-1];
+                    var otherIndex = [((index + 1) > 2) ? 0 : index + 1, ((index - 1) < 0) ? 2 : index - 1];
                     var parent = this.parentNode;
                     var bgBoxImg = document.getElementsByClassName('bg-box')[0].children[index];
                     var heroTxtsTxt = document.getElementsByClassName('hero-txts')[0].children[index];
-                    
+
                     if (window.innerWidth > 1024) {
-                        TweenMax.to(heroTxtsTxt, 0, {top:50, opacity:0, ease:Power3.easeOut});
+                        TweenMax.to(heroTxtsTxt, 0, { top: 50, opacity: 0, ease: Power3.easeOut });
                         heroTxtsTxt.style.display = "none";
-                        TweenMax.to(bgBoxImg, 0.8, {opacity:0, ease:Power3.easeOut});
+                        TweenMax.to(bgBoxImg, 0.8, { opacity: 0, ease: Power3.easeOut });
                         parent.children[otherIndex[0]].classList.remove('effect');
                         parent.children[otherIndex[1]].classList.remove('effect');
                         heroVideo.play();
@@ -227,16 +253,16 @@ const mainPage = (function() {
             }
 
             for (i = 0; i < slideContent.length; i++) {
-                slideContent[i].addEventListener('mouseover', function() {
+                slideContent[i].addEventListener('mouseover', function () {
                     this.children[0].lastElementChild.classList.add('on');
                 });
-                slideContent[i].addEventListener('mouseout', function() {
+                slideContent[i].addEventListener('mouseout', function () {
                     this.children[0].lastElementChild.classList.remove('on');
                 });
             }
         },
 
-        slideEvt: function() {
+        slideEvt: function () {
             var slideContainer = document.getElementsByClassName('slide-container')[0];
             var slideWrapper = slideContainer.firstElementChild; //
             var slidePgb = slideContainer.lastElementChild; //
@@ -248,7 +274,7 @@ const mainPage = (function() {
             var txtBoxh4 = txtBoxH2.previousElementSibling;
 
             txtBoxH2.style.transition
-            slideLeftBtn.addEventListener('click', function() {
+            slideLeftBtn.addEventListener('click', function () {
                 var scaleX = -1;
 
                 if (_slidePositionX >= -530) {
@@ -256,7 +282,7 @@ const mainPage = (function() {
                     this.classList.add('slide-btn--disable');
                     scaleX = 0.2;
                     layoutSlideWrapper.style.zIndex = 0;
-                    TweenMax.to(txtBoxh4, 0.5, {opacity: 1});
+                    TweenMax.to(txtBoxh4, 0.5, { opacity: 1 });
                     txtBoxH2.classList.remove('active');
                 }
                 else if (_slidePositionX >= -1060) {
@@ -278,11 +304,11 @@ const mainPage = (function() {
                     return;
                 }
 
-                setTransform(slideWrapper, {tl: [_slidePositionX,0,0], scx: 1, scy: 1});
-                setTransform(slidePgbFill, {tl: [0,0,0], scx: scaleX, scy: 1});
+                setTransform(slideWrapper, { tl: [_slidePositionX, 0, 0], scx: 1, scy: 1 });
+                setTransform(slidePgbFill, { tl: [0, 0, 0], scx: scaleX, scy: 1 });
             });
 
-            slideRightBtn.addEventListener('click', function() {
+            slideRightBtn.addEventListener('click', function () {
                 var scaleX = -1;
 
                 if (_slidePositionX > -530) {
@@ -290,7 +316,7 @@ const mainPage = (function() {
                     this.previousElementSibling.classList.remove('slide-btn--disable');
                     scaleX = 0.4
                     layoutSlideWrapper.style.zIndex = 2;
-                    TweenMax.to(txtBoxh4, 0.5, {opacity: 0});
+                    TweenMax.to(txtBoxh4, 0.5, { opacity: 0 });
                     txtBoxH2.classList.add('active');
                 }
                 else if (_slidePositionX > -1060) {
@@ -312,71 +338,71 @@ const mainPage = (function() {
                     return;
                 }
 
-                setTransform(slideWrapper, {tl: [_slidePositionX,0,0], scx: 1, scy: 1});
-                setTransform(slidePgbFill, {tl: [0,0,0], scx: scaleX, scy: 1});
+                setTransform(slideWrapper, { tl: [_slidePositionX, 0, 0], scx: 1, scy: 1 });
+                setTransform(slidePgbFill, { tl: [0, 0, 0], scx: scaleX, scy: 1 });
             });
         },
-        
-        cultureEvt: function() {
+
+        cultureEvt: function () {
             var c = document.getElementsByClassName('list_a_1')[0];
 
             c.addEventListener('mouseover', () => {
-                var a = document.getElementsByClassName('culture_img_1')[0];a.style.opacity = "1";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_img_1')[0]; a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "0";
             })
 
             c.addEventListener('mouseout', () => {
-                var a = document.getElementsByClassName('culture_img_1')[0];a.style.opacity = "0";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_img_1')[0]; a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "1";
             })
 
             // 2
             var c = document.getElementsByClassName('list_a_2')[0];
 
             c.addEventListener('mouseover', () => {
-                var a = document.getElementsByClassName('culture_img_2')[0];a.style.opacity = "1";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_img_2')[0]; a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "0";
             })
 
             c.addEventListener('mouseout', () => {
-                var a = document.getElementsByClassName('culture_img_2')[0];a.style.opacity = "0";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_img_2')[0]; a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "1";
             })
 
             // 3
             var c = document.getElementsByClassName('list_a_3')[0];
 
             c.addEventListener('mouseover', () => {
-                var a = document.getElementsByClassName('culture_img_3')[0];a.style.opacity = "1";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_img_3')[0]; a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "0";
             })
 
             c.addEventListener('mouseout', () => {
-                var a = document.getElementsByClassName('culture_img_3')[0];a.style.opacity = "0";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_img_3')[0]; a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "1";
             })
 
             // 4
             var c = document.getElementsByClassName('list_a_4')[0];
 
             c.addEventListener('mouseover', () => {
-                var a = document.getElementsByClassName('culture_img_4')[0];a.style.opacity = "1";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_img_4')[0]; a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "0";
             })
 
             c.addEventListener('mouseout', () => {
-                var a = document.getElementsByClassName('culture_img_4')[0];a.style.opacity = "0";
-                var a = document.getElementsByClassName('culture_video')[0];a.style.opacity = "1";
+                var a = document.getElementsByClassName('culture_img_4')[0]; a.style.opacity = "0";
+                var a = document.getElementsByClassName('culture_video')[0]; a.style.opacity = "1";
             })
         },
     }
 })();
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     mainPage.init();
 });
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     mainPage.resizeEvt();
     mainPage.mouseEvt();
     mainPage.slideEvt();
