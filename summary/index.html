@@ -8,15 +8,20 @@
    <meta name="application-name" content="company.gsshop.com">
    <title>GS SHOP 회사개요</title>
    <link rel="icon" href="img/favicon.ico">
+
    <link rel="stylesheet" href="../common/css/reset.css">
-   <link rel="stylesheet" href="css/common.css">
-   <link rel="stylesheet" href="css/header.css">
-   <link rel="stylesheet" href="css/footer.css">
+   <link rel="stylesheet" href="../common/css/common.css">
+   <link rel="stylesheet" href="../common/css/header.css">
+   <link rel="stylesheet" href="../common/css/footer.css">
    <link rel="stylesheet" href="css/index.css">
-   <script src="js/csr.js"></script>
+
+   <script src="../common/js/jquery.min.js"></script>
+   <script src="../common/js/header.js"></script>
+   <script src="../common/js/subpage.js"></script>
 </head>
 
 <body onscroll="scrollEvent();">
+   <!-- wrap -->
    <div id="wrap">
 
       <!-- Header -->
@@ -473,45 +478,6 @@
       </div>
       </footer>
 
-    </div> <!-- wrap -->
-
-    <script>
-        
-      // Scroll Animation (sa, 스크롤 애니메이션)
-      const saDefaultMargin = 300;
-      let saTriggerMargin = 0;
-      let saTriggerHeight = 0;
-      const saElementList = document.querySelectorAll('.sa');
-
-      const saFunc = function() {
-      for (const element of saElementList) {
-          if (!element.classList.contains('show')) {
-          if (element.dataset.saMargin) {
-              saTriggerMargin = parseInt(element.dataset.saMargin);
-          } else {
-              saTriggerMargin = saDefaultMargin;
-          }
-
-          if (element.dataset.saTrigger) {
-              saTriggerHeight = document.querySelector(element.dataset.saTrigger).getBoundingClientRect().top + saTriggerMargin;
-          } else {
-              saTriggerHeight = element.getBoundingClientRect().top + saTriggerMargin;
-          }
-
-          if (window.innerHeight > saTriggerHeight) {
-              let delay = (element.dataset.saDelay) ? element.dataset.saDelay : 0;
-              setTimeout(function() {
-              element.classList.add('show');
-              }, delay);
-          }
-          }
-      }
-      }
-
-      window.addEventListener('load', saFunc);
-      window.addEventListener('scroll', saFunc);
-
-
-  </script>
+   </div>
 </body>
 </html>
