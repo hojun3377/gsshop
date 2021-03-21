@@ -75,6 +75,9 @@ header {
 }
 
 /* GNB logo CSS */
+.gnb_logo {
+    display: block; position: absolute; z-index: 2;
+}
 .logo_c { 
    width: 147px; height: 90px; 
    background: url(../images/logo_color.png) no-repeat 0 32px; 
