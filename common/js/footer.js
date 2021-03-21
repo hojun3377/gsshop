@@ -1,11 +1,19 @@
+// Footer JAVA Script
 
-    // Footer JAVA Script
+function Footer() {
+    return {
+        clickEvt: function() {
+            var familySiteBtn = document.getElementsByClassName('familysite')[0].firstElementChild;
+            var familysiteRiseup = document.getElementsByClassName('familysite_riseup')[0];
+            var closeBtn = document.getElementsByClassName('close_btn')[0];
 
-    // Family site Pop-Up open & close Event(완성)
-    function familySiteOpen() {
-        document.getElementsByClassName('familysite_riseup')[0].style = "height: 283px; transition: all .3s;";
+            familySiteBtn.addEventListener('click', () => {
+                familysiteRiseup.style.height = '283px';
+            })
+
+            closeBtn.addEventListener('click', () => {
+                familysiteRiseup.style.height = '0px';
+            })
+        }
     }
-
-    function familySiteClose() {
-        document.getElementsByClassName('familysite_riseup')[0].style = "height: 0px; overflow:hidden; transition: all .3s;";
-    }
+}

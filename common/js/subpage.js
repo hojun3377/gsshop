@@ -1,4 +1,5 @@
 const pageHeader = new Header();
+const pageFooter = new Footer();
 
 const subPage = (function () {
     const saDefaultMargin = 300;
@@ -44,6 +45,7 @@ window.addEventListener('load', function () {
     subPage.scrollEvt();
 
     pageHeader.mouseEvt();
+    pageFooter.clickEvt();
 })
 
 // // Main JAVA Script

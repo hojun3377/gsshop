@@ -21,7 +21,7 @@ footer {
 }
 .footer_info a { 
    display: inline-block; 
-   margin-right: 35px; 
+   margin-right: 35px;
    color: #555;
 }
 .footer_info a:first-child { 
@@ -46,57 +46,78 @@ footer {
    width: 56px; height: 53px;
    background: url(../images/iconFooter_ccm.png) no-repeat left center; 
    background-size: auto; 
-   padding-right: 80px;
+   padding-right: 56px;
+   margin-right: 24px;
 }
 .familysite { 
+   font-size: 15px; line-height: 1; letter-spacing: normal; 
+   color: rgb(34, 34, 34);
    display:block;
    height: 53px; 
-   padding:18px 18px;  
    border:1px solid #ddd; border-radius:50px;
+}
+.familysite>a {
+   display: block;
+   padding:18px 18px;  
 }
 .familysite a span { 
    background: url(../images/iconFooter_familySite.png) no-repeat right center; 
    display: block;
    padding: 0 70px 0 0;
-   font-size: 15px; line-height: 1; letter-spacing: normal; 
    color: #222;
 }
 
-/* Footer family site sub menu CSS */
-.footer_popup {
-   display: none;
-   font-size: 15px; line-height: 16px; font-weight: 300; 
-   color: rgb(85, 85, 85);
-   max-width: 475px; min-width: 450px;
-   position: absolute; bottom: 85px; right: 50px; z-index: 100;
+/* Footer family site Pop-Up menu CSS */
+.familysite_riseup {
+   width: 100%; height: 0px;
+   overflow: hidden; 
+   position: absolute; bottom: 85px; right: 50px; z-index: 3;
+   transition: height 100ms;
+}
+.familysite_popup_wrap {
+   width: 475px;
+   position: absolute; bottom: 0px; right: 0px; z-index: 2;
    padding: 50px 40px; 
    background-color: rgb(255, 255, 255); 
    border: 1px solid rgb(191, 215, 21); border-radius: 30px;
 }
+.familysite_popup_wrap p {
+   font-size: 16px; line-height: 1; font-weight: 700; 
+   color: rgb(34, 34, 34);
+}
+.familysite_popup_wrap a {
+   font-family: 'Metropolis-Light', 'Noto Sans KR';
+   font-size: 15px; font-weight: 300;
+   color: rgb(85, 85, 85);
+   margin: 0;
+}
+.familysite_popup_wrap a:hover { 
+   color: rgb(177, 199, 18);
+}
 .familysite_popup {
-   width: 100%; 
-   display: flex; justify-content: space-between;
+   display: flex;
 }
 .familysite_popup:first-child { 
    margin-bottom: 30px; padding-bottom: 30px; 
    border-bottom: 1px solid rgb(229, 229, 229); 
 }
 
-.familysite_popup p { 
-   font-size: 16px; line-height: 1; font-weight: 700; 
-   color: rgb(34, 34, 34);  
-   width: 25%; 
+.familysite_category {
+   width: 25%;
 }
-.familysite_popup div { 
-   width: 100%;
-   flex-wrap: wrap; 
+.familysite_list {
+   width: 75%;
 }
-.familysite_popup div a {
-   line-height: 16px; 
-   width: 98px;
-   display: inline-block; 
+.familysite_list p {
+   width: 33.33%;
+   display: block;
+   float: left;
 }
-.familysite_popup div a:nth-child(n+4) { 
+.familysite_list p a {
+   display: inline-block;
+   margin: 0;
+}
+.familysite_list p:nth-child(n+4) { 
    margin-top: 15px; 
 }
 .close_btn {
@@ -104,6 +125,11 @@ footer {
    width: 10px; height: 10px; 
    background: url(../images/familysite_close.png) no-repeat; 
 }
+
+
+
+
+
 
 .ccm_page { 
    display: none; 
@@ -116,16 +142,24 @@ footer {
 
 /* 반응형 CSS */
 
-/* 반응형 1500px (layout의 문제로 BP 1500px 추가) */
+/* 반응형 1280px (layout의 문제로 BP 12800px 추가) */
 @media screen and (max-width:1280px) {
+   /* Footer 우측 Link */
    .footer_link { 
        position: absolute; top: 0px; right: 50px;
+   }
+
+   /* family site Pop-Up */
+   .familysite_riseup {
+       width: 475px;
+       bottom: 83px; right: 0px;
    }
 }
 
 
 /* 반응형 1220px */
 @media screen and (max-width:1220px) {
+   /* Footer 우측 Link */
    .footer_link { 
        position: absolute; top:20px; right: 50px;
    }   
@@ -170,6 +204,38 @@ footer {
    .familysite a span { 
        font-size: 13px; 
    }
+
+   /* family site Pop-Up */
+   .familysite_riseup {
+       bottom: 50px; right: 0px;
+   }
+   .familysite_popup_wrap{
+       width: 357px; height: 227px;
+       padding: 25px 30px;
+       border-radius: 20px;
+   }
+   .familysite_popup:first-child { 
+       margin-bottom: 15px; padding-bottom: 15px; 
+   }
+   .familysite_popup_wrap p {
+       font-size: 13px; line-height: 1; font-weight: 700;
+   }
+   .familysite_category {
+       width: 33.33%;
+       float: left;
+   }
+   .familysite_list p {
+       width: 50%;
+   }
+   .familysite_list p:nth-child(n+4) { 
+       margin-top: 0px; 
+   }
+   .familysite_list p:nth-child(n+3) { 
+       margin-top: 12px; 
+   }
+   .close_btn {
+       bottom: 14px; right: 0px;
+   }
 }
 
 /* 반응형 768px(GS는 BP가 758px) */
@@ -212,5 +278,31 @@ footer {
        width: 100%;
        margin: 0 auto;
        padding: 13px 16px 12px;
+   }
+
+   /* family site Pop-Up */
+   .familysite_riseup {
+       width: 100%; height: 0px;
+       bottom: 0px; right: 0px;
+   }
+   .familysite_popup_wrap {
+       width: 100%; height: 283px;
+   }
+   .familysite_popup {
+       display: block;
+   }
+   .familysite_popup:first-child { 
+       height: 171px;
+   }
+   .familysite_category {
+       width: 100%;
+       padding-bottom: 15px;
+       display: block;
+   }
+   .familysite_list {
+       width: 100%;
+   }
+   .close_btn {
+       bottom: 14px; right: 18px;
    }
 }
