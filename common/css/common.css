@@ -46,8 +46,8 @@ h2 {
     font-family: 'Metropolis-Bold', 'Noto Sans KR'; 
     font-weight: 700;
     font-size: 22px;
-    line-height: 70px;  
-    text-align: center;
+    /* line-height: 70px;   */
+    /* text-align: center; */
     color: #222;
 }
 h3 {

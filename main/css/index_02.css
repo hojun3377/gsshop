@@ -1,5 +1,5 @@
 /* 스크롤바 디자인 (크롬, 사파리, 오페라 적용) */
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
    width: 8px;
 }
 body::-webkit-scrollbar-thumb {
@@ -12,7 +12,7 @@ body::-webkit-scrollbar-track {
    background-color: rgba(255, 255, 255, 0);
    border-radius: 7px;
    box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0);
-}
+} */
 
 /* hero CSS */
 .hero_wrap {
@@ -226,7 +226,7 @@ body::-webkit-scrollbar-track {
 
 .news_txt {
    position: relative;
-   margin: auto;
+   margin: 0 auto;
    width: 1200px;
 }
 
@@ -489,6 +489,10 @@ body::-webkit-scrollbar-track {
       font-size: 16px;
    }
 
+   .news {
+      padding: 100px 50px 100px;
+   }
+   
    .news_cont {
       margin: 30px auto 0;
    }
@@ -528,6 +532,10 @@ body::-webkit-scrollbar-track {
 }
 
 @media screen and (max-width: 758px) {
+   .hero_wrap {
+      height: 1000px;
+   }
+
    .culture_movie {
       background-image: url(../images/mainCultureOverImg1.jpg);
       height: 1000px;
@@ -618,23 +626,14 @@ body::-webkit-scrollbar-track {
 
    /* news */
    .news_wrap {
-      height: 568px !important;
-   }
-
-   .news {
-      position: absolute;
-      top: 730px;
-      width: 100%;
+      height: 1002px;
+      position: relative;
    }
 
    .news_cont {
       width: 100%;
    }
 
-   .news {
-      padding: 350px 50px 100px;
-   }
-   
    .news_list {
       height: 280px;
    }
@@ -661,7 +660,7 @@ body::-webkit-scrollbar-track {
       -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
       text-overflow:ellipsis;
       height:90px;
-      width: 115%;
+      /* width: 115%; */
    }
 
    .news_date {
@@ -670,6 +669,24 @@ body::-webkit-scrollbar-track {
       left: 35px;
    }
 
+}
+
+@media screen and (max-width: 663px) {
+   .news_wrap {
+      height: 1026px;
+   }
+}
+
+@media screen and (max-width: 660px) {
+   .news_wrap {
+      height: 1050px;
+   }
+}
+
+@media screen and (max-width: 641px) {
+   .news_wrap {
+      height: 1074px;
+   }
 }
 
 @media screen and (max-width: 500px) {
@@ -703,11 +720,11 @@ body::-webkit-scrollbar-track {
    }
 
    .news_wrap {
-      height: 1000px !important;
+      height: 568px;
    }
 
    .news {
-      padding: 330px 15px;
+      padding: 60px 15px;
    }
 
    .news_tit {
