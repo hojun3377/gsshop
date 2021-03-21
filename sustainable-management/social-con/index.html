@@ -21,180 +21,181 @@
     
     <!-- java script link -->
     <script src="../../common/js/jquery.min.js"></script>
-    <script src="../../common/js/header.js"></script>
+   <script src="../../common/js/TweenMax.min.js"></script>
+   <script src="../../common/js/header.js"></script>
     <script src="../../common/js/subpage.js"></script>
 </head>
 <body onscroll="scrollEvent();">
 
     <!-- Header -->
-    <header onmouseover="gnbSubMenuOpen()" onmouseout="gnbSubMenuClose()">
+    <header id="m_header">
 
         <!-- Desktop & Mobile GNB default -->
         <div class="wrap_default">
-           <a href="#">
-              <h1 class="logo_w"><span></span></h1>
-           </a>
-           <nav class="gnb_menu_default">
-              <a href="">회사소개</a>
-              <a href="">미디어센터</a>
-              <a href="">지속가능경영</a>
-              <a href="">투자정보</a>
-           </nav>
-           <div class="top_utils_default">
-              <a href="" class="top_locate_default">입점안내</a>
-              <p>|</p>
-              <a href="" class="top_locate_default">위치안내</a>
-              <div class="language_default" >
-                    <a href=""><span>KOR</span><img src="img/header_lang_wht.png"></a>
+              <a href="#">
+                 <h1 class="logo_w"><span></span></h1>
+              </a>
+              <nav class="gnb_menu_default">
+                 <a href="">회사소개</a>
+                 <a href="">미디어센터</a>
+                 <a href="">지속가능경영</a>
+                 <a href="">투자정보</a>
+              </nav>
+              <div class="top_utils_default">
+                 <a href="" class="top_locate_default">입점안내</a>
+                 <p>|</p>
+                 <a href="" class="top_locate_default">위치안내</a>
+                 <div class="language_default">
+                    <a href=""><span>KOR</span><img src="../../common/images/header_lang_wht.png"></a>
                     <a href=""><span>ENG</span></a>
+                 </div>
               </div>
-           </div>
-           <a href="javascript:void(0);" class="m_gnb_menu_btn" onclick="mobileMenuOpen()"></a>
+              <a href="javascript:void(0);" class="m_gnb_menu_btn"></a>
         </div>
 
         <!-- Desktop GNB full menu -->
         <div class="desktop_gnb_menu">
-           <div class="wrap">
-              <!-- GNB logo -->
-              <a href="">
+              <div class="wrap">
+                 <!-- GNB logo -->
+                 <a href="../../main/index.html" style="display: block;">
                     <h1 class="logo_c"><span></span></h1>
-              </a>
-              <div>
+                 </a>
+                 <div>
                     <h1><a href="" class="hover_border"><span></span></a></h1>
-              </div>
-              <!-- GNB Menu -->
-              <nav>
-                    <div class="gnb_menu" onmouseover="borderBottom(0)" onmouseout="borderBottomNone(0)">
-                       <a href="" ><span class="greenbottom">회사소개</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="../../summary/index.html">회사개요</a></li>
-                          <li><a href="#">연혁</a></li>
-                          <li><a href="#">사업소개</a></li>
-                          <li><a href="#">기업문화</a></li>
-                       </ul>
+                 </div>
+                 <!-- GNB Menu -->
+                 <nav>
+                    <div class="gnb_menu">
+                          <a href=""><span class="greenbottom">회사소개</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="../../about-us/summary/index.html">회사개요</a></li>
+                             <li><a href="#">연혁</a></li>
+                             <li><a href="#">사업소개</a></li>
+                             <li><a href="#">기업문화</a></li>
+                          </ul>
                     </div>
-                    <div class="gnb_menu" onmouseover="borderBottom(1)" onmouseout="borderBottomNone(1)">
-                       <a href="" ><span class="greenbottom">미디어센터</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="#">NEWS</a></li>
-                          <li><a href="#">ON-AIR</a></li>
-                          <li><a href="#">INSIDE STORY</a></li>
-                       </ul>
+                    <div class="gnb_menu">
+                          <a href=""><span class="greenbottom">미디어센터</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="#">NEWS</a></li>
+                             <li><a href="#">ON-AIR</a></li>
+                             <li><a href="#">INSIDE STORY</a></li>
+                          </ul>
                     </div>
-                    <div class="gnb_menu" onmouseover="borderBottom(2)" onmouseout="borderBottomNone(2)">
-                       <a href="" ><span class="greenbottom">지속가능경영</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="../../csr/index.html">사회공헌</a></li>
-                          <li><a href="#">환경경영</a></li>
-                          <li><a href="./index.html">동반성장</a></li>
-                          <li><a href="#">미래성장</a></li>
-                          <li><a href="#">윤리경영</a></li>
-                       </ul>
+                    <div class="gnb_menu">
+                          <a href=""><span class="greenbottom">지속가능경영</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="../../sustainable-management/social-con/index.html">사회공헌</a></li>
+                             <li><a href="#">환경경영</a></li>
+                             <li><a href="../../sustainable-management/joint-gro/index.html">동반성장</a></li>
+                             <li><a href="#">미래성장</a></li>
+                             <li><a href="#">윤리경영</a></li>
+                          </ul>
                     </div>
-                    <div class="gnb_menu" onmouseover="borderBottom(3)" onmouseout="borderBottomNone(3)">
-                       <a href=""><span class="greenbottom">투자정보</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="#">IR정보</a></li>
-                          <li><a href="#">경영실적</a></li>
-                          <li><a href="#">기업지배구조</a></li>
-                       </ul>
+                    <div class="gnb_menu">
+                          <a href=""><span class="greenbottom">투자정보</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="#">IR정보</a></li>
+                             <li><a href="#">경영실적</a></li>
+                             <li><a href="#">기업지배구조</a></li>
+                          </ul>
                     </div>
-              </nav>
-              <!-- GNB Utility -->
-              <div class="top_utils">
+                 </nav>
+                 <!-- GNB Utility -->
+                 <div class="top_utils">
                     <div class="locate">
-                       <a href="" class="top_locate">입점안내</a>
-                       <p>|</p>
-                       <a href="" class="top_locate">위치안내</a>
+                          <a href="" class="top_locate">입점안내</a>
+                          <p>|</p>
+                          <a href="" class="top_locate">위치안내</a>
                     </div>
-                    <div class="language" onclick="languageChange()" >
-                       <a class="lang_kor"><span>KOR</span><img src="img/header_lang_black.png" class="lang_img"></a>
-                       <a href=""><span>ENG</span></a>
+                    <div class="language">
+                          <a class="lang_kor"><span>KOR</span><img src="../../common/images/header_lang_black.png" class="lang_img"></a>
+                          <a href=""><span>ENG</span></a>
                     </div>
-              </div>
-              <!-- GNB 인재채용 -->
-              <a href="" class="top_hr">
+                 </div>
+                 <!-- GNB 인재채용 -->
+                 <a href="" class="top_hr">
                     <p>인재채용<br>바로가기</p>
-              </a>
-              <!-- Mobile GNB Utility -->
-              <div class="m_locate">
+                 </a>
+                 <!-- Mobile GNB Utility -->
+                 <div class="m_locate">
                     <a href="">입점안내</a>
                     <a href="">위치안내</a>
+                 </div>
               </div>
-           </div>
         </div>
-        
+
 
         <!-- Mobile GNB full menu -->
         <div class="m_gnb_menu">
-           <div class="wrap">
-              <!-- GNB logo -->
-              <a href="">
+              <div class="wrap">
+                 <!-- GNB logo -->
+                 <a href="../../main/index.html">
                     <h1 class="logo_c"><span></span></h1>
-              </a>
-              <div>
+                 </a>
+                 <div>
                     <h1><a href="" class="hover_border"><span></span></a></h1>
-              </div>
-              <!-- GNB Language -->
-              <div class="language">
+                 </div>
+                 <!-- GNB Language -->
+                 <div class="language">
                     <a href=""><span>KOR</span></a>
                     <a href=""><span>ENG</span></a>
-              </div>
+                 </div>
 
-              <!-- GNB Menu -->
-              <nav>
+                 <!-- GNB Menu -->
+                 <nav>
                     <div class="gnb_menu_m">
-                       <a href="javascript:void(0);" class="gnb_menu_list" onclick="contentsOpen(0)"><span>회사소개</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="../../summary/index.html">회사개요</a></li>
-                          <li><a href="#">연혁</a></li>
-                          <li><a href="#">사업소개</a></li>
-                          <li><a href="#">기업문화</a></li>
-                       </ul>
+                          <a href="javascript:void(0);" class="gnb_menu_list"><span>회사소개</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="../../about-us/summary/index.html">회사개요</a></li>
+                             <li><a href="#">연혁</a></li>
+                             <li><a href="#">사업소개</a></li>
+                             <li><a href="#">기업문화</a></li>
+                          </ul>
                     </div>
                     <div class="gnb_menu_m">
-                       <a href="javascript:void(0);" class="gnb_menu_list" onclick="contentsOpen(1)"><span>미디어센터</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="#">NEWS</a></li>
-                          <li><a href="#">ON-AIR</a></li>
-                          <li><a href="#">INSIDE STORY</a></li>
-                       </ul>
+                          <a href="javascript:void(0);" class="gnb_menu_list"><span>미디어센터</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="#">NEWS</a></li>
+                             <li><a href="#">ON-AIR</a></li>
+                             <li><a href="#">INSIDE STORY</a></li>
+                          </ul>
                     </div>
                     <div class="gnb_menu_m">
-                       <a href="javascript:void(0);" class="gnb_menu_list" onclick="contentsOpen(2)"><span>지속가능경영</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="../../csr/index.html">사회공헌</a></li>
-                          <li><a href="#">환경경영</a></li>
-                          <li><a href="./index">동반성장</a></li>
-                          <li><a href="#">미래성장</a></li>
-                          <li><a href="#">윤리경영</a></li>
-                       </ul>
+                          <a href="javascript:void(0);" class="gnb_menu_list"><span>지속가능경영</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="../../sustainable-management/social-con/index.html">사회공헌</a></li>
+                             <li><a href="#">환경경영</a></li>
+                             <li><a href="../../sustainable-management/joint-gro/index.html">동반성장</a></li>
+                             <li><a href="#">미래성장</a></li>
+                             <li><a href="#">윤리경영</a></li>
+                          </ul>
                     </div>
                     <div class="gnb_menu_m">
-                       <a href="javascript:void(0);" class="gnb_menu_list" onclick="contentsOpen(3)"><span>투자정보</span></a>
-                       <ul class="gnb_hiddenmenu">
-                          <li><a href="#">IR정보</a></li>
-                          <li><a href="#">경영실적</a></li>
-                          <li><a href="#">기업지배구조</a></li>
-                       </ul>
+                          <a href="javascript:void(0);" class="gnb_menu_list"><span>투자정보</span></a>
+                          <ul class="gnb_hiddenmenu">
+                             <li><a href="#">IR정보</a></li>
+                             <li><a href="#">경영실적</a></li>
+                             <li><a href="#">기업지배구조</a></li>
+                          </ul>
                     </div>
 
                     <!-- GNB 인재채용 -->
                     <a href="" class="top_hr">
-                       <p>인재채용<br>바로가기</p>
+                          <p>인재채용<br>바로가기</p>
                     </a>
-              </nav>
-              
-              <!-- Mobile GNB Utility -->
-              <div class="m_locate">
+                 </nav>
+
+                 <!-- Mobile GNB Utility -->
+                 <div class="m_locate">
                     <a href="">입점안내</a>
                     <a href="">위치안내</a>
+                 </div>
+                 <!-- Mobile Menu close btn -->
               </div>
-              <!-- Mobile Menu close btn -->
-           </div>
-           <a href="javascript:void(0);" class="m_menu_close" onclick="mobileMenuClose()"></a>
+              <a href="javascript:void(0);" class="m_menu_close"></a>
         </div>
-        
+
     </header>
 
     <!-- Main -->

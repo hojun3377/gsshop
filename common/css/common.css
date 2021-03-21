@@ -12,7 +12,7 @@
 }
 @font-face {
     font-family: 'Metropolis-Medium';
-    src: url(../font/Metropolis-Medium.woff) format('woff2');
+    src: url('../fonts/Metropolis-Medium.woff') format('woff2');
     font-weight: 500;
 }
 @font-face {

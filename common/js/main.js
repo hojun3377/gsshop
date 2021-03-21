@@ -24,6 +24,8 @@ if (matchMedia("screen and (min-width: 1220px)").matches) {
     }
 }
 
+const pageHeader = new Header();
+
 const mainPage = (function () {
     var _windowW, _windowW,
         _newWindow, _noVideo,
@@ -407,4 +409,6 @@ window.addEventListener('load', function () {
     mainPage.mouseEvt();
     mainPage.slideEvt();
     mainPage.cultureEvt();
+
+    pageHeader.mouseEvt();
 })
