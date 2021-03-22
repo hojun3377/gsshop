@@ -107,9 +107,11 @@ nav {
    color: rgb(85, 85, 85); text-align: center;
    padding: 9px 0; 
 }
-.gnb_hiddenmenu a:hover { 
-   font-family:'Metropolis-Medium','Noto Sans KR'; 
-   color: rgb(177, 199, 18); font-weight: 500; 
+@media (hover: hover) {
+	.gnb_hiddenmenu a:hover { 
+    font-family:'Metropolis-Medium','Noto Sans KR'; 
+    color: rgb(177, 199, 18); font-weight: 500; 
+    }
 }
 
 /* GNB Utility */
@@ -138,8 +140,10 @@ nav {
    border: 1px solid rgba(0, 0, 0, 0.4); border-radius: 32px;
    overflow: hidden; 
 }
-.language a:hover { 
-   color:#b1c712; 
+@media (hover: hover) {
+	.language a:hover { 
+    color:#b1c712; 
+    }
 }
 .lang_kor {
    font-weight: 500;
@@ -322,16 +326,19 @@ nav {
        max-height: 63px; overflow: hidden;
    }
    .gnb_menu_list { 
-       font-family: "Metropolis-Bold", "Noto Sans KR" ;
-       font-size: 18px; 
-       font-weight: 700;
-       color: rgb(34, 34, 34);
-       display: block;
-       padding: 22px 40px 22px 15px;
-       background: url(../images/allMenuD_oneDepth_open.png) no-repeat right 15px top 50%;
-       background-size: 17px 9px;
-       border-bottom: 1px solid rgb(229, 229, 229);
-   }
+    font-family: "Metropolis-Bold", "Noto Sans KR" ;
+    font-size: 18px; 
+    font-weight: 700;
+    color: rgb(34, 34, 34);
+    display: block;
+    padding: 22px 40px 22px 15px;
+    border-bottom: 1px solid rgb(229, 229, 229);
+    position: relative;   
+}
+.m_menu_arrow {
+    width: 17px; height: 9px;
+    position: absolute; top: 26.5px; right: 2%;
+}
    .gnb_hiddenmenu { 
        padding: 15px 20px;
        background-color: rgb(240, 240, 240);
@@ -347,11 +354,8 @@ nav {
        background-image: none;
        border: none;
    }
-   .gnb_hiddenmenu a:hover { 
-       font-family:'Metropolis-Regular','Noto Sans KR'; 
-       color: rgb(34, 34, 34); font-weight: 400;
-   }
 
+   
    /* GNB 인재채용 */
    .top_hr { 
        width: -webkit-calc(100% - 30px); height: 200px; 
