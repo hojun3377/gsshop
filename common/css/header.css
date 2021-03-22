@@ -406,6 +406,13 @@ nav {
    }
 }
 
+/* 반응형 768px */
+@media screen and (max-width: 768px) {
+    #m_header {
+        overflow-x: hidden;
+    }
+}
+
 /* 반응형 500px */
 @media screen and (max-width: 500px) {
 

@@ -28,10 +28,10 @@ const pageHeader = new Header();
 const pageFooter = new Footer();
 
 const mainPage = (function () {
-    var _windowW, _windowW,
-        _newWindow, _noVideo,
+    var _windowW, _windowH, _sectionSize, _pageIndex,
+        _newWindow, _noVideo, _wheelDirection,
         _videoTime, _txtInterval, _txtTime,
-        _slidePositionX;
+        _slidePositionX, _pagePositionY;
 
 
     var getIndex = function (element) {
@@ -103,6 +103,8 @@ const mainPage = (function () {
         _windowW = window.innerWidth;
         _windowH = window.innerHeight;
 
+        var body = document.getElementsByTagName('body')[0];
+        var fullPageWrapper = document.getElementsByClassName('full-page-wrapper')[0];
         var heroTxts = txtBox.lastElementChild;
 
         if (_newWindow) {
@@ -155,33 +157,89 @@ const mainPage = (function () {
             TweenMax.to(heroTxts.firstElementChild, 1, { delay: 0.7, top: 0, opacity: 1, ease: Power3.easeOut });
         }
 
-        if (_windowW > 768) txtBox.style.top = Math.floor(_windowH / 2 - (txtBox.offsetHeight / 2)) + 'px';
-        else txtBox.style.top = 120 + 'px';
+        if (_windowW > 768) {
+            body.style.overflow = 'hidden';
+            if (_newWindow || pastWindowW < 769) {
+                history.scrollRestoration = 'manual';
+                document.addEventListener('wheel', wheelUpDown)
+                document.addEventListener('wheel', Paging)
+        }
+            txtBox.style.top = Math.floor(_windowH / 2 - (txtBox.offsetHeight / 2)) + 'px';
+        }
+        else {
+            if (pastWindowW > 768) {
+                document.removeEventListener('wheel', wheelUpDown)
+                document.removeEventListener('wheel', Paging)
+                fullPageWrapper.style = '';
+                _pageIndex = 0;
+            }
+            body.style.overflow = 'visible';
+
+            txtBox.style.top = 120 + 'px';
+        }
+    }
+
+    var wheelUpDown = function(obj) {
+        if (obj.deltaY > 0)
+            _wheelDirection = true;
+        else if (obj.deltaY < 0)
+            _wheelDirection = false;
+        else
+            _wheelDirection = null;
+
+        obj.stopPropagation();
+    }
+    
+    var Paging = function(obj) {
+        var fullPageWrapper = document.getElementsByClassName('full-page-wrapper')[0];
+
+        if ((_pageIndex == 0 && !_wheelDirection) || _pageIndex == _sectionSize.length-1 && _wheelDirection)
+            return;
+
+        if (_wheelDirection === null || _newWindow)
+            //error
+            console('error');
+        
+        if (_wheelDirection)
+            _pagePositionY -= _sectionSize[++_pageIndex];
+        else
+            _pagePositionY += _sectionSize[_pageIndex--];
+
+        setTransform(fullPageWrapper, {tl: [0, _pagePositionY, 0], scx: 1, scy: 1});
     }
 
     return {
-        init: function () {
+        init: function() {
             _windowW = window.innerWidth;
             _windowH = window.innerHeight;
+            _sectionSize = [];
+            _pageIndex = 0;
             _newWindow = true;
             _noVideo = false;
+            _pagePositionY = 0;
             _slidePositionX = 0;
 
+            var fullPageWrapper = document.getElementsByClassName('full-page-wrapper')[0];
             var heroVideo = document.getElementById('hero-video');
             var bgBox = document.getElementsByClassName('bg-box')[0];
             var heroTxtBox = document.getElementsByClassName('hero-txt-box')[0];
             var slideLeftBtn = document.getElementsByClassName('slide-left-btn')[0];
             var slidePgbFill = document.getElementsByClassName('slide-progressbar-fill')[0];
 
+            for (i=0; i<fullPageWrapper.children.length; i++)
+                _sectionSize.push(fullPageWrapper.children[i].clientHeight);
+
             slideLeftBtn.classList.add('slide-btn--disable');
             // _transformNode = {tl: [0, 0, 0], scx: 0.2, scy: 1};
             setTransform(slidePgbFill, { tl: [0, 0, 0], scx: 0.2, scy: 1 });
 
+            // 스크롤 맨 위로 올리기
+            history.scrollRestoration = 'manual';
             Sizing(heroVideo, bgBox, heroTxtBox);
             _newWindow = false;
         },
 
-        resizeEvt: function () {
+        resizeEvt: function() {
             var heroVideo = document.getElementById('hero-video');
             var bgBox = document.getElementsByClassName('bg-box')[0];
             var heroTxtBox = document.getElementsByClassName('hero-txt-box')[0];
@@ -191,7 +249,7 @@ const mainPage = (function () {
             });
         },
 
-        mouseEvt: function () {
+        mouseEvt: function() {
             var heroVideo = document.getElementById('hero-video');
             var heroTxtBoxA = document.getElementsByClassName('hero-txt-box')[0];
             var slideContent = document.getElementsByClassName('slide-content');
@@ -265,7 +323,7 @@ const mainPage = (function () {
             }
         },
 
-        slideEvt: function () {
+        slideEvt: function() {
             var slideContainer = document.getElementsByClassName('slide-container')[0];
             var slideWrapper = slideContainer.firstElementChild; //
             var slidePgb = slideContainer.lastElementChild; //
@@ -346,7 +404,7 @@ const mainPage = (function () {
             });
         },
 
-        cultureEvt: function () {
+        cultureEvt: function() {
             var c = document.getElementsByClassName('list_a_1')[0];
 
             c.addEventListener('mouseover', () => {
