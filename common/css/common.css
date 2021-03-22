@@ -64,7 +64,7 @@ h4 {
     font-weight: 900;
     font-size: 60px;
     line-height: 70px;
-    letter-spacing: -0.8px; 
+    /* letter-spacing: -0.8px;  */
     text-align: center;
     color: #222
 }
@@ -157,7 +157,7 @@ p {
 }
 
 @keyframes rise_up {
-    0% { top: 80px; opacity: 0; }
+    0% { top: 100px; opacity: 0; }
     100% { top: 0px; opacity: 1; }
 }
 

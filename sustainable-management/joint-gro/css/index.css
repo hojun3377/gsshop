@@ -6,6 +6,9 @@
     position: relative;
     padding-bottom: 140px;
 }
+.l-page-nav {
+    width: auto;
+}
 #joint-gro-contents-header {
     width: calc(100% - 180px);
     height: 200px;
@@ -67,9 +70,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* object-position: 50% 0; */
     z-index: -1;
-    /* transition: object-position 2000ms cubic-bezier(0.2, 1, 0.5, 1); */
 }
 .hero-text-box {
     width: 100%;
@@ -77,12 +78,23 @@
     top: 385px;
     text-align: center;
 }
+.hero-text-box > h3 {
+    position: relative;
+    top: 100px;
+    opacity: 0;
+    animation: rise_up .7s forwards;
+}
 .hero-text-box > p {
     margin-top: 35px;
     font-family: 'Metropolis-Light','Noto Sans KR';
     font-weight: 300;
     font-size: 18px;
+    line-height: 1;
     color: #fff;
+    position: relative;
+    top: 100px;
+    opacity: 0;
+    animation: rise_up .7s .2s forwards;
 }
 .joint-gro-contents-header-box {
     display: flex;
@@ -93,7 +105,7 @@
     float: left;
     padding-right: 21px;
     margin-right: 14px;
-    background: url(../../common/images/indicatorD_location_arrow.png) no-repeat right 2px;
+    background: url(../../../common/images/indicatorD_location_arrow.png) no-repeat right 2px;
     background-size: 7px 11px;
     font-family: 'Metropolis-Light','Noto Sans KR';
     font-weight: 300;
@@ -113,12 +125,12 @@
     font-size: 16px;
     color: #222;
     padding-right: 18px;
-    background: url(../../common/images/indicatorD_location_open.png) no-repeat right center;
+    background: url(../../../common/images/indicatorD_location_open.png) no-repeat right center;
 }
 .share {
     display: block;
     padding-left: 28px;
-    background: url(../../common/images/indicatorD_utillD_share.png) no-repeat left center;
+    background: url(../../../common/images/indicatorD_utillD_share.png) no-repeat left center;
     font-family: 'Metropolis-SemiBold';
     font-weight: 600;
     font-size: 13px;
@@ -187,9 +199,11 @@
 .content-02-tit {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translate(-50%,0);
+    left: 0;
+    right: 0;
+    /* transform: translate(-50%,0); */
     width: 1256px;
+    margin: 0 auto;
     font-family: 'Metropolis-ExtraBold';
     font-weight: 900;
     font-size: 140px;
@@ -308,7 +322,7 @@
 }
 .content-03-dnl-btn>span {
     padding-right: 28px;
-    background: url(../../common/images/btnA_download.png) no-repeat right 1px center;
+    background: url(../../../common/images/btnA_download.png) no-repeat right 1px center;
 }
 
 .bs-img-wrapper {
@@ -370,7 +384,7 @@
     font-weight: 700;
     font-size: 14px;
     color: #222;
-    background: url(../../common/images/topBtn.gif) no-repeat center 16px #fff;
+    background: url(../../../common/images/topBtn.gif) no-repeat center 16px #fff;
     text-align: center;
 }
 
@@ -425,4 +439,18 @@
         top: -130px;
         left: 25px;
     }
+}
+
+/* Scroll Animation CSS */
+.sa {
+    opacity: 0;
+    transition: all .5s ease;
+}
+/* 아래에서 위로 페이드 인 */
+.sa_up {
+    transform: translate(0, 100px);
+}
+.sa.show {
+    opacity: 1;
+    transform: none;
 }

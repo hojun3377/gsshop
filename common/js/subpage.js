@@ -34,7 +34,7 @@ const subPage = (function () {
     }
 
     return {
-        scrollEvt: function() {
+        scrollEvt: function () {
             saElementList = document.querySelectorAll('.sa');
             window.addEventListener('scroll', saFunc);
         }
@@ -50,34 +50,34 @@ window.addEventListener('load', function () {
 
 // // Main JAVA Script
 
-// if (matchMedia("screen and (min-width: 982px)").matches) {
+if (matchMedia("screen and (min-width: 982px)").matches) {
 
-//     // subpage menu click event
-//     var openSubMenu = false;
-//     function csrOpen() {
-//         if (openSubMenu) {
-//             document.getElementsByClassName('subpg_menu')[0].style = "height: 16px; overflow: hidden; transition: all 0.5s;";
-//             document.getElementsByClassName('subpg_csr_img')[0].style = "transform:rotate(0deg);";
-//             openSubMenu = false;
-//         }
-//         else {
-//             document.getElementsByClassName('subpg_menu')[0].style = "height: 300px; overflow:none; transition: all 0.5s;";
-//             document.getElementsByClassName('subpg_csr_img')[0].style = "transform:rotate(180deg);";
-//             openSubMenu = true;
-//         }
-//     }
-// }
+    // subpage menu click event
+    var openSubMenu = false;
+    function csrOpen() {
+        if (openSubMenu) {
+            document.getElementsByClassName('subpg_menu')[0].style = "height: 16px; overflow: hidden; transition: all 0.5s;";
+            document.getElementsByClassName('subpg_csr_img')[0].style = "transform:rotate(0deg);";
+            openSubMenu = false;
+        }
+        else {
+            document.getElementsByClassName('subpg_menu')[0].style = "height: 300px; overflow:none; transition: all 0.5s;";
+            document.getElementsByClassName('subpg_csr_img')[0].style = "transform:rotate(180deg);";
+            openSubMenu = true;
+        }
+    }
+}
 
 
-// // SNS link click event(완성)
-// var openSnsLink = false;
-// function snsOpen() {
-//     if (openSnsLink) {
-//         document.getElementsByClassName('subpg_shr')[0].style = "height: 22px; overflow: hidden; transition: all 0.5s;";
-//         openSnsLink = false;
-//     }
-//     else {
-//         document.getElementsByClassName('subpg_shr')[0].style = "height: 350px; overflow:none; transition: all 0.5s;";
-//         openSnsLink = true;
-//     }
-// }
+// SNS link click event(완성)
+var openSnsLink = false;
+function snsOpen() {
+    if (openSnsLink) {
+        document.getElementsByClassName('subpg_shr')[0].style = "height: 22px; overflow: hidden; transition: all 0.5s;";
+        openSnsLink = false;
+    }
+    else {
+        document.getElementsByClassName('subpg_shr')[0].style = "height: 350px; overflow:none; transition: all 0.5s;";
+        openSnsLink = true;
+    }
+}
