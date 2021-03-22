@@ -29,7 +29,7 @@ const pageFooter = new Footer();
 
 const mainPage = (function () {
     var _windowW, _windowH, _sectionSize, _pageIndex,
-        _newWindow, _noVideo, _wheelDirection,
+        _newWindow, _noVideo, _wheelDirection, _isScroll,
         _videoTime, _txtInterval, _txtTime,
         _slidePositionX, _pagePositionY;
 
@@ -190,11 +190,13 @@ const mainPage = (function () {
         obj.stopPropagation();
     }
     
-    var Paging = function(obj) {
+    var Paging = function() {
         var fullPageWrapper = document.getElementsByClassName('full-page-wrapper')[0];
 
-        if ((_pageIndex == 0 && !_wheelDirection) || _pageIndex == _sectionSize.length-1 && _wheelDirection)
+        if (_isScroll || (_pageIndex == 0 && !_wheelDirection) || _pageIndex == _sectionSize.length-1 && _wheelDirection)
             return;
+
+        _isScroll = true;
 
         if (_wheelDirection === null || _newWindow)
             //error
@@ -206,6 +208,9 @@ const mainPage = (function () {
             _pagePositionY += _sectionSize[_pageIndex--];
 
         setTransform(fullPageWrapper, {tl: [0, _pagePositionY, 0], scx: 1, scy: 1});
+        this.addEventListener('transitionend', () => {
+            _isScroll = false;
+        })
     }
 
     return {
@@ -216,6 +221,7 @@ const mainPage = (function () {
             _pageIndex = 0;
             _newWindow = true;
             _noVideo = false;
+            _isScroll = false;
             _pagePositionY = 0;
             _slidePositionX = 0;
 
