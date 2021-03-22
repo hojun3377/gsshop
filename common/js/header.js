@@ -95,6 +95,7 @@ function Header() {
             if (i != target) {
                 // elList[i].style = "max-height: 63px;";
                 TweenMax.to(elList[i], 0.5, {maxHeight: '63px', ease: Power3.easeOut});
+                document.getElementsByClassName('m_menu_arrow')[i].style = "transform:rotate(0deg);"
                 openState[i] = false
             }
         }
@@ -103,11 +104,13 @@ function Header() {
         if (openState[target]) {
             // elList[target].style = "max-height:63px;";
             TweenMax.to(elList[target], 0.5, {maxHeight: '63px', ease: Power3.easeOut});
+            document.getElementsByClassName('m_menu_arrow')[target].style = "transform:rotate(0deg);"
             openState[target] = false
         }
         else {
             // elList[target].style = "max-height:300px;";
             TweenMax.to(elList[target], 0.5, {maxHeight: '300px', ease: Power3.easeOut});
+            document.getElementsByClassName('m_menu_arrow')[target].style = "transform:rotate(180deg);"
             openState[target] = true
         }
     }
