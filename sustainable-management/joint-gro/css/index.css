@@ -395,6 +395,12 @@
     text-align: center;
 }
 
+.topBtn:hover {
+    color: #fff;
+    background: url(../../../common/images/topBtn_hover.gif) no-repeat center 16px #bfd715;
+    border: 1px solid #bfd715;
+}
+
 /* 반응형 */
 
 @media screen and (max-width: 1500px) {
