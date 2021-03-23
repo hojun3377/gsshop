@@ -23,3 +23,17 @@ function Footer() {
         }
     }
 }
+
+// CCM Page Open Close Event
+function ccmPageOpen() {
+    document.getElementsByClassName('ccm_pop_up')[0].style = "display:block;";
+    document.documentElement.scrollTop = 0;
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+    document.getElementsByClassName('desktop_gnb_menu')[0].style = "display:none;";
+}
+
+function ccmPageClose() {
+    document.getElementsByClassName('ccm_pop_up')[0].style = "display:none;";
+    document.getElementsByTagName('body')[0].style.overflow = 'visible';
+    document.getElementsByClassName('desktop_gnb_menu')[0].style = "display:block;";
+}
