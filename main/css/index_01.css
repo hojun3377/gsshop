@@ -29,7 +29,6 @@
 }
 .full-page-wrapper {
    touch-action: none;
-   transition: all 700ms ease 0s;
 }
 .video-box {
    position: absolute;

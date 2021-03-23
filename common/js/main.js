@@ -28,7 +28,7 @@ const pageHeader = new Header();
 const pageFooter = new Footer();
 
 const mainPage = (function () {
-    var _windowW, _windowH, _sectionSize, _pageIndex,
+    var _windowW, _windowH, _sectionSize, _pageIndex, _scrollTop, 
         _newWindow, _noVideo, _wheelDirection, _isScroll,
         _videoTime, _txtInterval, _txtTime,
         _slidePositionX, _pagePositionY;
@@ -99,6 +99,7 @@ const mainPage = (function () {
 
     var Sizing = function (videoEl, bgBox, txtBox) {
         var pastWindowW = _windowW;
+        var pastWindowH = _windowH;
 
         _windowW = window.innerWidth;
         _windowH = window.innerHeight;
@@ -159,23 +160,51 @@ const mainPage = (function () {
 
         if (_windowW > 768) {
             body.style.overflow = 'hidden';
-            if (_newWindow || pastWindowW < 769) {
-                history.scrollRestoration = 'manual';
+
+            if (pastWindowW < 769) {
+                // _scrollTop -= pastWindowH/2
+                for (_pageIndex=0; _pageIndex<_sectionSize.length; _pageIndex++) {
+                    if ((_scrollTop += (_sectionSize[_pageIndex])) >= 0) {
+                        break;
+                    }
+                }
+
+                window.scrollTo(0, 0);
                 document.addEventListener('wheel', wheelUpDown)
                 document.addEventListener('wheel', Paging)
-        }
+            }
+
+            _sectionSize = [];
+            for (i=0; i<fullPageWrapper.children.length; i++)
+                _sectionSize.push(fullPageWrapper.children[i].clientHeight);
+
+            _pagePositionY = 0;
+            for (i=0; i<_pageIndex; i++) {
+                _pagePositionY -= _sectionSize[i];
+            }
+            setTransform(fullPageWrapper, {tl: [0, _pagePositionY, 0], scx: 1, scy: 1});
+
+            _scrollTop = 0;
+
             txtBox.style.top = Math.floor(_windowH / 2 - (txtBox.offsetHeight / 2)) + 'px';
         }
         else {
+            document.removeEventListener('wheel', wheelUpDown)
+            document.removeEventListener('wheel', Paging)
             if (pastWindowW > 768) {
-                document.removeEventListener('wheel', wheelUpDown)
-                document.removeEventListener('wheel', Paging)
                 fullPageWrapper.style = '';
+                window.scrollTo(0, -_pagePositionY);
                 _pageIndex = 0;
             }
             body.style.overflow = 'visible';
 
             txtBox.style.top = 120 + 'px';
+
+            _sectionSize = [];
+            for (i=0; i<fullPageWrapper.children.length; i++)
+                _sectionSize.push(fullPageWrapper.children[i].clientHeight);
+
+            _scrollTop = -(window.scrollY || document.documentElement.scrollTop);
         }
     }
 
@@ -207,9 +236,12 @@ const mainPage = (function () {
         else
             _pagePositionY += _sectionSize[_pageIndex--];
 
+        fullPageWrapper.style.transition = 'all 700ms ease 0s';
         setTransform(fullPageWrapper, {tl: [0, _pagePositionY, 0], scx: 1, scy: 1});
         this.addEventListener('transitionend', () => {
-            _isScroll = false;
+            setTimeout(() => {
+                _isScroll = false;
+            })
         })
     }
 
@@ -225,22 +257,17 @@ const mainPage = (function () {
             _pagePositionY = 0;
             _slidePositionX = 0;
 
-            var fullPageWrapper = document.getElementsByClassName('full-page-wrapper')[0];
             var heroVideo = document.getElementById('hero-video');
             var bgBox = document.getElementsByClassName('bg-box')[0];
             var heroTxtBox = document.getElementsByClassName('hero-txt-box')[0];
             var slideLeftBtn = document.getElementsByClassName('slide-left-btn')[0];
             var slidePgbFill = document.getElementsByClassName('slide-progressbar-fill')[0];
 
-            for (i=0; i<fullPageWrapper.children.length; i++)
-                _sectionSize.push(fullPageWrapper.children[i].clientHeight);
-
             slideLeftBtn.classList.add('slide-btn--disable');
-            // _transformNode = {tl: [0, 0, 0], scx: 0.2, scy: 1};
             setTransform(slidePgbFill, { tl: [0, 0, 0], scx: 0.2, scy: 1 });
 
-            // 스크롤 맨 위로 올리기
-            history.scrollRestoration = 'manual';
+            document.addEventListener('wheel', wheelUpDown)
+            document.addEventListener('wheel', Paging)
             Sizing(heroVideo, bgBox, heroTxtBox);
             _newWindow = false;
         },
