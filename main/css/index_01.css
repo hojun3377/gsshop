@@ -29,6 +29,7 @@
 }
 .full-page-wrapper {
    touch-action: none;
+   transition: all 700ms ease 0s;
 }
 .video-box {
    position: absolute;
@@ -423,13 +424,9 @@
        position: static;
        margin-top: 60px;
    }
-   .sec-02-bg {
-      display: none;
-   }
+   .sec-02-bg, 
    .slide-left-btn, .slide-right-btn {
-       /* display: none; */
-       width: 60px;
-       height: 60px;
+       display: none;
    }
    .sec-02-txt-box>h2 {
        font-size: 45px;

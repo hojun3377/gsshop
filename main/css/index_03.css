@@ -184,7 +184,7 @@ transition: all 0.5s;
     background: url(../images/ir_ir_icon2.png) no-repeat center;
 }
 
-.notice_board a span {
+.notice_board a {
     font-size: 18px;
     line-height: 26px;
     color: rgb(34, 34, 34);
@@ -193,14 +193,6 @@ transition: all 0.5s;
     top: 100px;
     left: 40px;
     word-break: break-all;
-}
-
-.notice_board a span:nth-child(1) {
-    display: inline-block;
-}
-
-.notice_board a span:nth-child(n+2) {
-    display: none;
 }
 
 .notice_board a span:hover {
@@ -300,6 +292,14 @@ transition: all 0.5s;
         height: 400px;
     }
 
+    .notice_board a {
+        font-size: 16px;
+        width: 230px; 
+        max-width: 230px;
+        left: 30px; 
+        top: 80px;
+     }
+
     /* 1220px Font */
     .ir h3 {
         font-size: 18px;
@@ -377,6 +377,11 @@ transition: all 0.5s;
         margin: 20px auto 0;
     }
 
+    .notice_board a {
+        width: 320px; 
+        max-width: 320px;
+    }
+
     .ir_report {
         width: 380px;
         max-width: 380px;
@@ -384,7 +389,7 @@ transition: all 0.5s;
         padding: 30px;
         margin: 20px auto 0;
         background: rgb(180, 212, 27);
-        border: none;
+        border: 0px;
     }
 
     .stock_price {
@@ -432,7 +437,7 @@ transition: all 0.5s;
 
     /* 500px Layout */
     .ir_wrap {
-        width: 100%;
+        width: 500px;
         max-width: 500px;
         height: 869px;
     }
