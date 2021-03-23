@@ -437,7 +437,7 @@ transition: all 0.5s;
 
     /* 500px Layout */
     .ir_wrap {
-        width: 500px;
+        width: 100%;
         max-width: 500px;
         height: 869px;
     }
